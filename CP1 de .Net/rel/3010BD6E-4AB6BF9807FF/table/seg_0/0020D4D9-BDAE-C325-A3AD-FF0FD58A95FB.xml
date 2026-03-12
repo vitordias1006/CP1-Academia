@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0020D4D9-BDAE-C325-A3AD-FF0FD58A95FB" name="Relation_4">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Funcionário_id_funcionário" id="A5D8A1CE-9C97-7359-6E47-23197A2D9C07">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E5804F2F-131C-5046-72EB-D091DB809DCA" referredColumn="3DB88961-D0F9-4DF0-43EA-B131EBA8A55E"/>
+</associations>
+</Column>
+<Column name="Instrutor_id_instrutor" id="671E0497-F10F-B7D6-2F22-80BA0948ED38">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CDFBE3B8-AC6F-A8A3-8CFC-AAA840C41251" referredColumn="885E78A8-1661-2EBE-4BCF-A99EA4AB2B79"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="157C4799-3DB1-26DA-6B04-7C82063F7889" name="Relation_4_PK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A5D8A1CE-9C97-7359-6E47-23197A2D9C07"/>
+<colUsage columnID="671E0497-F10F-B7D6-2F22-80BA0948ED38"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CCBD1886-B35B-682C-8E47-AE04693816AF" name="Relation_4_Funcionário_FK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<generatorID>64379A29-7674-9A20-1CB9-3DBEAB110572</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A5D8A1CE-9C97-7359-6E47-23197A2D9C07"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A0202DC8-817D-067E-8BCE-F84F80F8FDC3" name="Relation_4_Instrutor_FK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<generatorID>64379A29-7674-9A20-1CB9-3DBEAB110572</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="671E0497-F10F-B7D6-2F22-80BA0948ED38"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

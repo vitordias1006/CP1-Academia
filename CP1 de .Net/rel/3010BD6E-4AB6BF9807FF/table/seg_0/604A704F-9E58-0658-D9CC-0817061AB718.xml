@@ -1,0 +1,134 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="604A704F-9E58-0658-D9CC-0817061AB718" name="Unidade_da_academia">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:46:57 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<ordsAlias>table_8</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_unidada" id="BDCDBD9E-81BB-3BD7-6F4A-1FC80F87D5BC">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:48:29 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<ownDataTypeParameters>,8,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="telefone" id="00ABBCB7-90CA-6D7D-B825-9BBD4A8BFDC5">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:48:29 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>11</dataTypeSize>
+<ownDataTypeParameters>11,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ativo" id="AE9D9876-6184-F54B-44CD-A86C8FC3A4E7">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:48:29 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="horario_de_funcionamento" id="54B43589-16B9-76C1-4197-FAB99B9611B2">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:48:29 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT014</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_gerente" id="77A23D5D-93BB-B6EE-D16B-52673957AB73">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<generatorID>422EC910-3998-6CE4-138F-FAC8EE5E9DC1</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B76E0AA2-11D3-51CB-89DB-E8B1EBA9B4DD" referredColumn="6F317A7D-0740-9891-E122-77AECBA6E933"/>
+</associations>
+</Column>
+<Column name="id_rede" id="AD3A84A0-40A8-3E2B-7C01-4200B6B68206">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<generatorID>A84F929A-9091-F2A2-5193-4211821CA06A</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C3F4652A-FE12-AFFE-4E7D-3263CFF9BD13" referredColumn="92B3E24F-3655-FFC3-6F4C-3104860FCAD8"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6FC979D8-4479-9C5D-C85D-964B9F5426B9" name="Unidade_da_academia_PK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:48:29 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BDCDBD9E-81BB-3BD7-6F4A-1FC80F87D5BC"/>
+<colUsage columnID="AD3A84A0-40A8-3E2B-7C01-4200B6B68206"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="93A094B8-9ABE-808C-3ACC-726C3D5B1B4D" name="Uni_da_academia__IDX">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>C01EC324-8333-E313-0FD4-FAD9FE8B982D</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="77A23D5D-93BB-B6EE-D16B-52673957AB73"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="22DEDE05-232D-8359-5B39-99C02BE52FE6" name="Uni_Rede_academia_FK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<generatorID>F6CBA64F-A57A-8903-2F1E-3A8D0CE7EF7E</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AD3A84A0-40A8-3E2B-7C01-4200B6B68206"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A3AE97B1-E311-F5B5-6CB4-91BAF957045D" name="Uni_academia_Gerente_FK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<generatorID>C01EC324-8333-E313-0FD4-FAD9FE8B982D</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="77A23D5D-93BB-B6EE-D16B-52673957AB73"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

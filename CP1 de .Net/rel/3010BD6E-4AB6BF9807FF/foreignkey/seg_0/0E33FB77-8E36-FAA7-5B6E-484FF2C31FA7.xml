@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="0E33FB77-8E36-FAA7-5B6E-484FF2C31FA7" containerWithKeyObject="4475CB97-3707-6CF8-CE87-DB34D43CD54F" localFKIndex="72C391A9-399F-35C2-0E94-413FD9B8880B" name="Relation_5_Gerente_FK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<generatorID>2A3A8B02-BC7E-FF0D-62F3-B71ADBE522BD</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<referredTableLongName>Gerente</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>24C7E392-E71D-E26F-EF99-9B974B74799F</referredTableID>
+<keyObject>0567BE4B-A13F-E4C1-B831-E38324CB2513</keyObject>
+<referredKeyID>0567BE4B-A13F-E4C1-B831-E38324CB2513</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_gerente</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

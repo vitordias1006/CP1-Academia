@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F280F3F0-794D-29AC-A3BB-BD5CC556521D" name="Relation_7">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Aluno_id_aluno" id="CF996DA5-A593-52B1-8459-104306552CAF">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4207FAD6-68E0-B50A-5309-126A71A84FB7" referredColumn="C1B1F647-DA01-9D84-6EC7-688294DA0C49"/>
+</associations>
+</Column>
+<Column name="Aluno_id_plano" id="42EBC37D-E9A2-6E20-B0CC-BC199DE4CB5C">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4207FAD6-68E0-B50A-5309-126A71A84FB7" referredColumn="2C86C6B2-5955-B48E-9E4F-BB5C1DD1AABD"/>
+</associations>
+</Column>
+<Column name="Instrutor_id_instrutor" id="BE8943DE-AB13-DCE6-2EA6-A1E8B72D3BE8">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E44C6441-9D4D-A667-5211-41002447EF48" referredColumn="885E78A8-1661-2EBE-4BCF-A99EA4AB2B79"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CAB49D01-FE75-D9AE-E7CF-AF8BAC1E8C29" name="Relation_7_PK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CF996DA5-A593-52B1-8459-104306552CAF"/>
+<colUsage columnID="42EBC37D-E9A2-6E20-B0CC-BC199DE4CB5C"/>
+<colUsage columnID="BE8943DE-AB13-DCE6-2EA6-A1E8B72D3BE8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="096BA61C-2E4C-CA63-8D78-A47BF9E161AD" name="Relation_7_Aluno_FK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<generatorID>66B3D9CD-9DCF-992A-719A-1863217E9871</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CF996DA5-A593-52B1-8459-104306552CAF"/>
+<colUsage columnID="42EBC37D-E9A2-6E20-B0CC-BC199DE4CB5C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CEF980F0-D1A6-D46B-E75F-F9682DE2676E" name="Relation_7_Instrutor_FK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<generatorID>66B3D9CD-9DCF-992A-719A-1863217E9871</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BE8943DE-AB13-DCE6-2EA6-A1E8B72D3BE8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="60ED82AF-3206-0C21-2802-286A2D2A0272" name="Aula extra">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>4F21034D-8C8C-E67A-2D1D-3EED0B25E889</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id aula extra" id="B7711A00-A3C9-3CF7-E6A6-078D7F5B22E8">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>CD03D068-BB74-9B79-32B4-9D9846D1CDA4</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<ownDataTypeParameters>,8,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="tipo da aula" id="1DFF3CD5-70BF-EAC4-C8FD-5A3293A62512">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>9DDC1090-1354-D41D-04BA-51566B9BDF10</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="horario da aula" id="E5BBCBEE-F7CD-E398-CB66-4956C93068E9">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>97E017DC-536E-3880-46B9-DFC5F6EE20F0</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT014</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="capacidade" id="6EF235B4-8346-DE93-E167-C1BA931E07D0">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>B10E4382-DD6E-2582-6886-E04DC56FD115</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="56A92277-C5AD-A332-3D0E-EB581803B989" name="Aula extra PK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>3B68B310-699E-A8D3-BAAB-8A74A848364B</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>B7711A00-A3C9-3CF7-E6A6-078D7F5B22E8</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

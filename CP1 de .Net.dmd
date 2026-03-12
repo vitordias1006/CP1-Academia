@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="CP1 de .Net" id="93C44A4B-E581-7DA2-BDBE-15462A96666F" version="3.5">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:23:12 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>93C44A4B-E581-7DA2-BDBE-15462A96666F</designId>
+</OSDM_Design>

@@ -1,0 +1,168 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6777E2DB-9374-D381-D402-A1C31764DC91" name="Aluno">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:30:54 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_aluno" id="C1B1F647-DA01-9D84-6EC7-688294DA0C49">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:32:58 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<ownDataTypeParameters>,6,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nome" id="2549E5C7-DAD6-7E1E-3496-5B648558B6E4">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:32:58 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cpf" id="27370286-BF00-5EBF-9172-B281A649CB35">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:32:58 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>18</dataTypeSize>
+<ownDataTypeParameters>18,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="email" id="ECFA0A24-5341-8EA1-3304-B3D7D915EFF9">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:32:58 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="telefone" id="585B9233-4936-98D5-575C-40037BD807F0">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:32:58 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>11</dataTypeSize>
+<ownDataTypeParameters>11,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="data_de_matricula" id="88053107-85CA-3EEA-3E36-A59FF88EB15A">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:32:58 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ativo" id="67804683-369B-1146-6885-782D37397764">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:32:58 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_plano" id="2C86C6B2-5955-B48E-9E4F-BB5C1DD1AABD">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<generatorID>AF2EF1D6-F74A-8F4F-3C3F-2D911EADBC3F</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E60BC18B-EF35-8BC4-9C47-3C810ABCF45F" referredColumn="C90D4ACC-D2C7-5158-C0CD-4CDFC5EF90D0"/>
+</associations>
+</Column>
+<Column name="id_treino" id="5C25AA34-9F53-07EE-28AD-138090603792">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<generatorID>4EB7C8A7-0C83-AB52-6199-B453312D1121</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="375495FD-A97E-C835-FDDB-7810B0220353" referredColumn="4A53DCAA-A2D7-8B25-7390-5B42CC353F80"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="67218C9E-BA1E-FCCF-EF70-9984A60C2814" name="Aluno_PK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:32:58 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C1B1F647-DA01-9D84-6EC7-688294DA0C49"/>
+<colUsage columnID="2C86C6B2-5955-B48E-9E4F-BB5C1DD1AABD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6883E2B8-BB51-C08E-3285-9771E6120B48" name="Aluno__IDX">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>06E0FAE4-3E4C-6084-F944-64AEA7645BBF</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="5C25AA34-9F53-07EE-28AD-138090603792"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4EE3767A-256B-3691-ADB7-E80319DE7820" name="Aluno_Ficha_de_treino_FK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<generatorID>06E0FAE4-3E4C-6084-F944-64AEA7645BBF</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5C25AA34-9F53-07EE-28AD-138090603792"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="05E9C412-5F4F-1E13-11D6-F95CE9EBCA47" name="Aluno_Plano_FK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<generatorID>D8BB755B-036C-5E5B-B533-CF304134F374</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2C86C6B2-5955-B48E-9E4F-BB5C1DD1AABD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
