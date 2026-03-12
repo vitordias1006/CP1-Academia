@@ -1,0 +1,165 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D90B34BC-DE1E-EA64-EE60-992E9B2A954A" name="Aluno">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>6777E2DB-9374-D381-D402-A1C31764DC91</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id aluno" id="34B01079-991C-8CFF-039C-A6BADAB65771">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>C1B1F647-DA01-9D84-6EC7-688294DA0C49</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<ownDataTypeParameters>,6,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nome" id="624834F1-7E04-C4FB-8D40-49AD0968445E">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>2549E5C7-DAD6-7E1E-3496-5B648558B6E4</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cpf" id="00DD1A8B-DB70-5074-BE99-DAB2B5F953B6">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>27370286-BF00-5EBF-9172-B281A649CB35</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>18</dataTypeSize>
+<ownDataTypeParameters>18,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="email" id="57B1D660-2254-3C17-33A1-14D9986A311B">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>ECFA0A24-5341-8EA1-3304-B3D7D915EFF9</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="telefone" id="C017ECF5-E602-B938-14F0-DBE435670912">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>585B9233-4936-98D5-575C-40037BD807F0</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>11</dataTypeSize>
+<ownDataTypeParameters>11,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="data de matricula" id="F88944AD-BF2C-E28F-1774-CF634D16083C">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>88053107-85CA-3EEA-3E36-A59FF88EB15A</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ativo" id="FE5F5E16-84BF-EEF7-7121-19FEC5A88C81">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>67804683-369B-1146-6885-782D37397764</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id plano" id="AF2EF1D6-F74A-8F4F-3C3F-2D911EADBC3F">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:03:05 UTC</createdTime>
+<generatorID>D8BB755B-036C-5E5B-B533-CF304134F374</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<referedAttribute>191561F2-9797-8175-5589-E3058F005624</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id treino" id="4EB7C8A7-0C83-AB52-6199-B453312D1121">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:07:43 UTC</createdTime>
+<generatorID>06E0FAE4-3E4C-6084-F944-64AEA7645BBF</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<referedAttribute>6B080E7D-2BFF-ADBF-8BCF-BC0A4F43886A</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="FECF2071-5685-779A-1790-88D15DDE750B" name="Aluno PK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>67218C9E-BA1E-FCCF-EF70-9984A60C2814</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>34B01079-991C-8CFF-039C-A6BADAB65771</attributeRef>
+<attributeRef>AF2EF1D6-F74A-8F4F-3C3F-2D911EADBC3F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

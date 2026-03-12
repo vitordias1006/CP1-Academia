@@ -1,0 +1,104 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CC57B960-8596-F51B-78B0-7E4DF8B32191" name="Ficha_de_treino">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:41:39 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<ordsAlias>table_6</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_treino" id="4A53DCAA-A2D7-8B25-7390-5B42CC353F80">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:44:26 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<ownDataTypeParameters>,8,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="exercicios" id="7698F7AF-42DF-A74F-B5F5-24BAE9DDC757">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:44:26 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="repeticoes" id="28648A51-DC59-548C-E79B-EDA55D2292C3">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:44:26 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="series" id="86090FF3-F7A5-FD3B-DCAB-C843113496A9">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:44:26 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="tipo_de_exercicio" id="A4D50AE5-0FB1-B819-7EA1-BA1AA9AB92CB">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:44:26 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="musculo_alvo" id="18877573-C57F-596A-9450-5A35DA396A7A">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:44:26 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="observacao" id="DAE520F6-F9D2-419C-569B-8557219793B2">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:44:26 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1D3D6E78-430F-2EC1-E8C4-D211710FEB7F" name="Ficha_de_treino_PK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:44:26 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4A53DCAA-A2D7-8B25-7390-5B42CC353F80"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

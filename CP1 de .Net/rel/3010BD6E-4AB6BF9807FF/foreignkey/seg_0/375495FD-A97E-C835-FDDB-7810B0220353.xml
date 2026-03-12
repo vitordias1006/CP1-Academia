@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="375495FD-A97E-C835-FDDB-7810B0220353" containerWithKeyObject="6777E2DB-9374-D381-D402-A1C31764DC91" localFKIndex="4EE3767A-256B-3691-ADB7-E80319DE7820" name="Aluno_Ficha_de_treino_FK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<generatorID>06E0FAE4-3E4C-6084-F944-64AEA7645BBF</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<referredTableLongName>Ficha_de_treino</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>CC57B960-8596-F51B-78B0-7E4DF8B32191</referredTableID>
+<keyObject>1D3D6E78-430F-2EC1-E8C4-D211710FEB7F</keyObject>
+<referredKeyID>1D3D6E78-430F-2EC1-E8C4-D211710FEB7F</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_treino</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

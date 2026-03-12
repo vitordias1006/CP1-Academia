@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="E44C6441-9D4D-A667-5211-41002447EF48" containerWithKeyObject="F280F3F0-794D-29AC-A3BB-BD5CC556521D" localFKIndex="CEF980F0-D1A6-D46B-E75F-F9682DE2676E" name="Relation_7_Instrutor_FK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:10:21 UTC</createdTime>
+<generatorID>66B3D9CD-9DCF-992A-719A-1863217E9871</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<referredTableLongName>Instrutor</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>35DD2313-E28E-ABC7-F2C1-93F2F6039C40</referredTableID>
+<keyObject>9EF17FA2-803F-7681-2D4D-BC3B3CE1BE2D</keyObject>
+<referredKeyID>9EF17FA2-803F-7681-2D4D-BC3B3CE1BE2D</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_instrutor</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,68 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4F21034D-8C8C-E67A-2D1D-3EED0B25E889" name="Aula_extra">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:48:47 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<ordsAlias>table_9</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_aula_extra" id="CD03D068-BB74-9B79-32B4-9D9846D1CDA4">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:50:19 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<ownDataTypeParameters>,8,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="tipo_da_aula" id="9DDC1090-1354-D41D-04BA-51566B9BDF10">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:50:19 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="horario_da_aula" id="97E017DC-536E-3880-46B9-DFC5F6EE20F0">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:50:19 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT014</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="capacidade" id="B10E4382-DD6E-2582-6886-E04DC56FD115">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:50:19 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3B68B310-699E-A8D3-BAAB-8A74A848364B" name="Aula_extra_PK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:50:19 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CD03D068-BB74-9B79-32B4-9D9846D1CDA4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

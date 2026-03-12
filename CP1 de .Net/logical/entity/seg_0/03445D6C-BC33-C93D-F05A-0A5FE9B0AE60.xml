@@ -1,0 +1,122 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="03445D6C-BC33-C93D-F05A-0A5FE9B0AE60" name="Gerente">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>24C7E392-E71D-E26F-EF99-9B974B74799F</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id gerente" id="770C4D3D-726A-08C5-E9E6-6E6C091193D0">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>6F317A7D-0740-9891-E122-77AECBA6E933</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<ownDataTypeParameters>,6,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="comissao" id="EFFD044D-498A-4936-65D7-DB2055641EF1">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>2FEB50A7-FF27-D3E6-B541-2FB33BDFFE0B</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="periodo de lideranca" id="8A332D47-7022-2579-AC90-8706A3CA9086">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>90889847-DA1A-DB80-F51D-2AC6AB07A288</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="area de responsabilidade" id="99A27470-DE96-2D14-8AAE-5C1F1DB50155">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>D0E7B8BC-D9AF-DFE1-EAC9-CBFEDB6E9C0C</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nivel de gerencia" id="52051491-7810-CC54-A814-04FCF0032094">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>6DAA9A2B-383F-F0AA-DA51-C3017F092D5C</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id funcionário" id="6994E3D8-51A0-318E-F611-4D0BD63D195F">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-11 22:07:22 UTC</createdTime>
+<generatorID>47092F53-BE58-40E1-B433-F6CD86184A87</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="true"/>
+</engineerTo>
+<referedAttribute>1DDCAD89-7CE6-4AD1-C102-08C03F569FED</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="B70F93E1-3FAE-3CEF-5449-AF76B3111312" name="Gerente PK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 20:00:20 UTC</createdTime>
+<generatorID>0567BE4B-A13F-E4C1-B831-E38324CB2513</generatorID>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="3010BD6E-230B-2BF9-D3CA-4AB6BF9807FF" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>770C4D3D-726A-08C5-E9E6-6E6C091193D0</attributeRef>
+<attributeRef>6994E3D8-51A0-318E-F611-4D0BD63D195F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

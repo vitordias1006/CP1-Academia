@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="24C7E392-E71D-E26F-EF99-9B974B74799F" name="Gerente">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:36:08 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_gerente" id="6F317A7D-0740-9891-E122-77AECBA6E933">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:38:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<ownDataTypeParameters>,6,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="comissao" id="2FEB50A7-FF27-D3E6-B541-2FB33BDFFE0B">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:38:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="periodo_de_lideranca" id="90889847-DA1A-DB80-F51D-2AC6AB07A288">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:38:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="area_de_responsabilidade" id="D0E7B8BC-D9AF-DFE1-EAC9-CBFEDB6E9C0C">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:38:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nivel_de_gerencia" id="6DAA9A2B-383F-F0AA-DA51-C3017F092D5C">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:38:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0567BE4B-A13F-E4C1-B831-E38324CB2513" name="Gerente_PK">
+<createdBy>Dell</createdBy>
+<createdTime>2026-03-09 19:38:21 UTC</createdTime>
+<ownerDesignName>CP1 de .Net</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6F317A7D-0740-9891-E122-77AECBA6E933"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
