@@ -10,20 +10,16 @@ public class Gerente : Funcionario
    
    public String NivelDeLideranca { get; private set; }
    
-   public Guid FuncionarioId { get; private set; }
    
-   public Funcionario Funcionario { get; private set; }
    
    public List<UnidadeAcademia> UnidadesAcademia { get; private set; }
 
-   public Gerente(string nome, string cpf, string email, string cargo, double salario, DateTime dataDeContratacao, bool ativo, double comissao, DateTime periodoDeLideranca, string areaDeResponsabilidade, string nivelDeLideranca, Guid funcionarioId, Funcionario funcionario, List<UnidadeAcademia> unidadesAcademia) : base(nome, cpf, email, cargo, salario, dataDeContratacao, ativo)
+   public Gerente(string nome, string cpf, string email, string cargo, double salario, DateTime dataDeContratacao, bool ativo, double comissao, DateTime periodoDeLideranca, string areaDeResponsabilidade, string nivelDeLideranca, List<UnidadeAcademia> unidadesAcademia) : base(nome, cpf, email, cargo, salario, dataDeContratacao, ativo)
    {
       Comissao = comissao;
       PeriodoDeLideranca = periodoDeLideranca;
       AreaDeResponsabilidade = areaDeResponsabilidade;
       NivelDeLideranca = nivelDeLideranca;
-      FuncionarioId = funcionarioId;
-      Funcionario = funcionario;
       UnidadesAcademia = unidadesAcademia;
    }
 }
