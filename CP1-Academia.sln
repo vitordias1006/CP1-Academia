@@ -6,6 +6,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{84F17F8B-0C1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP1-Academia.Domain", "CP1-Academia.Domain\CP1-Academia.Domain.csproj", "{593F5698-0DFA-4282-85A9-DF2C82ADF6D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP1-Academia.Infraestructure", "CP1-Academia.Infraestructure\CP1-Academia.Infraestructure.csproj", "{1B103BE9-4763-4632-BBCB-9413072817B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +22,14 @@ Global
 		{593F5698-0DFA-4282-85A9-DF2C82ADF6D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{593F5698-0DFA-4282-85A9-DF2C82ADF6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{593F5698-0DFA-4282-85A9-DF2C82ADF6D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B103BE9-4763-4632-BBCB-9413072817B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B103BE9-4763-4632-BBCB-9413072817B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B103BE9-4763-4632-BBCB-9413072817B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B103BE9-4763-4632-BBCB-9413072817B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5DC2D124-19DC-4087-AE00-78EA6153697D} = {84F17F8B-0C16-44E6-AD09-1770761FA01E}
 		{593F5698-0DFA-4282-85A9-DF2C82ADF6D6} = {84F17F8B-0C16-44E6-AD09-1770761FA01E}
+		{1B103BE9-4763-4632-BBCB-9413072817B4} = {84F17F8B-0C16-44E6-AD09-1770761FA01E}
 	EndGlobalSection
 EndGlobal
