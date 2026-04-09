@@ -16,22 +16,22 @@ public class UnidadeAcademia : BaseEntity
     public Guid GerenteId { get; private set; }
     public Gerente Gerente { get; private set; }
     
-    public Guid FuncionarioId { get; private set; }
-    public Funcionario Funcionario { get; private set; }
+    public List<Funcionario> Funcionarios { get; private set; }
     
+    public Guid LocalizacaoId { get; private set; }
     public Localizacao Localizacao { get; private set; }
 
-    public UnidadeAcademia(string telefone, bool ativo, DateTime horarioFuncionamento, Guid redeAcademiaId, RedeAcademia redeAcademia, Guid gerenteId, Gerente gerente, Guid funcionarioId, Funcionario funcionario, Localizacao localizacao)
+    public UnidadeAcademia(string telefone, bool ativo, DateTime horarioFuncionamento, Guid redeAcademiaId, RedeAcademia redeAcademia, Guid gerenteId, Gerente gerente, List<Funcionario> funcionarios, Guid localizacaoId, Localizacao localizacao)
     {
-        this.Telefone = telefone;
+        Telefone = telefone;
         Ativo = ativo;
         HorarioFuncionamento = horarioFuncionamento;
         RedeAcademiaId = redeAcademiaId;
         RedeAcademia = redeAcademia;
         GerenteId = gerenteId;
         Gerente = gerente;
-        FuncionarioId = funcionarioId;
-        Funcionario = funcionario;
-        this.Localizacao = localizacao;
+        Funcionarios = funcionarios;
+        LocalizacaoId = localizacaoId;
+        Localizacao = localizacao;
     }
 }

@@ -3,11 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CP1_Academia.Infraestructure.Persistence;
 
-public class AcademiaContext : DbContext
+public class AcademiaContext (DbContextOptions<AcademiaContext> options) : DbContext(options)
 {
-    public AcademiaContext(DbContextOptions<AcademiaContext> optionsAcademia) : base(optionsAcademia)
-    {
-    }
     
     public DbSet<Aluno>  Alunos { get; set; }
     
@@ -28,11 +25,9 @@ public class AcademiaContext : DbContext
     public DbSet<RedeAcademia> RedeAcademias { get; set; }
     
     public DbSet<UnidadeAcademia> UnidadeAcademias { get; set; }
-
-
-
-
-
-
-
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AcademiaContext).Assembly);
+    }
 }

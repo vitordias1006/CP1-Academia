@@ -15,8 +15,11 @@ public class Localizacao : BaseEntity
     public string Rua { get; private set; }
     
     public int Numero { get; private set; }
+    
+    public Guid UnidadeAcademiaId { get; private set; }
+    public UnidadeAcademia UnidadeAcademia { get; private set; }
 
-    public Localizacao(string estado, string cidade, string bairro, string cep, string rua, int numero)
+    public Localizacao(string estado, string cidade, string bairro, string cep, string rua, int numero, Guid unidadeAcademiaId, UnidadeAcademia unidadeAcademia)
     {
         Estado = estado;
         Cidade = cidade;
@@ -24,5 +27,7 @@ public class Localizacao : BaseEntity
         Cep = cep;
         Rua = rua;
         Numero = numero;
+        UnidadeAcademiaId = unidadeAcademiaId;
+        UnidadeAcademia = unidadeAcademia;
     }
 }
