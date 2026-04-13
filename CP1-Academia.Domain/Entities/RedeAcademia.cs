@@ -14,12 +14,11 @@ public class RedeAcademia : BaseEntity
     
     public List<UnidadeAcademia> UnidadesAcademia { get; private set; }
 
-    public RedeAcademia(string nome, int qntdUnidades, string cnpj, DateTime dataFundacao, List<UnidadeAcademia> unidadesAcademia)
+    public RedeAcademia(string nome, int qntdUnidades, string cnpj, DateTime dataFundacao)
     {
         Nome = nome;
         QntdUnidades = qntdUnidades;
         Cnpj = cnpj;
         DataFundacao = dataFundacao;
-        UnidadesAcademia = unidadesAcademia;
     }
 }

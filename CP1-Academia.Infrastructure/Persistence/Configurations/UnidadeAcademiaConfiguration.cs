@@ -19,19 +19,10 @@ public class UnidadeAcademiaConfiguration : IEntityTypeConfiguration<UnidadeAcad
         
         builder.Property(u => u.HorarioFuncionamento);
         
-        builder.HasOne(u => u.RedeAcademia).WithOne().HasForeignKey<ClassLibrary1.Entities.UnidadeAcademia>(uc => uc.RedeAcademiaId)
-            .OnDelete(DeleteBehavior.Cascade);
-        
-        builder.HasOne(u => u.Gerente).WithOne().HasForeignKey<ClassLibrary1.Entities.UnidadeAcademia>(uc => uc.GerenteId)
-            .OnDelete(DeleteBehavior.Cascade);
-        
-        builder.HasOne(u => u.Localizacao).WithOne().HasForeignKey<ClassLibrary1.Entities.UnidadeAcademia>(uc => uc.Localizacao)
-            .OnDelete(DeleteBehavior.Cascade);
-        
         builder.HasMany(u => u.Funcionarios)
-            .WithOne()
+            .WithOne(f => f.UnidadeAcademia)
             .HasForeignKey(f => f.UnidadeAcademiaId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
 
     }
 }

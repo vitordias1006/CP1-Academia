@@ -17,8 +17,6 @@ public class AulaExtraConfiguration : IEntityTypeConfiguration<AulaExtra>
         builder.Property(a => a.HorarioAula);
         builder.Property(a => a.Capacidade);
         
-        builder.HasMany(a => a.FichaTreinos)
-            .WithMany(f => f.AulaExtras)
-            .UsingEntity(j => j.ToTable("AulasExtrasFichaTreinos"));
+       
     }
 }

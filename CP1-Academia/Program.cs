@@ -1,41 +1,39 @@
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+using CP1_Academia.Infraestructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+namespace CP1_Academia;
+public class Program
 {
-    app.MapOpenApi();
-}
-
-app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
+    public static void Main(string[] args)
     {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast");
+        var builder = WebApplication.CreateBuilder(args);
 
-app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        builder.Services.AddDbContext<AcademiaContext>(options =>
+        {
+            options.UseOracle(builder.Configuration.GetConnectionString("AcademiaOracle"));
+        });
+        
+        
+        // builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+
+        builder.Services.AddControllers();
+        // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+        var app = builder.Build();
+
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.MapOpenApi();
+        }
+
+        app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+
+        app.MapControllers();
+
+        app.Run();
+    }
 }

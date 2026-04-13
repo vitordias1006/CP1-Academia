@@ -18,7 +18,7 @@ public class RedeAcademiaConfiguration : IEntityTypeConfiguration<RedeAcademia>
         builder.Property(x => x.DataFundacao);
         
         builder.HasMany(x => x.UnidadesAcademia)
-            .WithOne()
+            .WithOne(u => u.RedeAcademia)
             .HasForeignKey(u => u.RedeAcademiaId)
             .OnDelete(DeleteBehavior.Cascade);
     }

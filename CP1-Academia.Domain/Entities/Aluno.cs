@@ -19,10 +19,9 @@ public class Aluno : BaseEntity
     public Guid PlanoId { get; private set; }
     public Plano Plano { get; private set; }
     
-    public Guid FichaTreinoId { get; private set; }
     public FichaTreino FichaTreino { get; private set; }
 
-    public Aluno(string nome, string cpf, string email, string telefone, DateTime dataMatricula, bool ativo, Guid planoId, Plano plano, Guid fichaTreinoId, FichaTreino fichaTreino)
+    public Aluno(string nome, string cpf, string email, string telefone, DateTime dataMatricula, bool ativo, Guid planoId)
     {
         Nome = nome;
         Cpf = cpf;
@@ -31,8 +30,5 @@ public class Aluno : BaseEntity
         DataMatricula = dataMatricula;
         Ativo = ativo;
         PlanoId = planoId;
-        Plano = plano;
-        FichaTreinoId = fichaTreinoId;
-        FichaTreino = fichaTreino;
     }
 }

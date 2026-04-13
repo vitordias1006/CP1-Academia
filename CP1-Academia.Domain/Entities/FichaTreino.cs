@@ -21,7 +21,7 @@ public class FichaTreino : BaseEntity
     public Guid AlunoId { get; private set; }
     public Aluno Aluno { get; private set; }
     
-    public FichaTreino(string exercicios, int repeticoes, int series, string tipoExercicio, string musculoAlvo, string observacao, List<AulaExtra> aulaExtras, Guid alunoId, Aluno aluno)
+    public FichaTreino(string exercicios, int repeticoes, int series, string tipoExercicio, string musculoAlvo, string observacao, Guid alunoId)
     {
         Exercicios = exercicios;
         Repeticoes = repeticoes;
@@ -29,8 +29,6 @@ public class FichaTreino : BaseEntity
         TipoExercicio = tipoExercicio;
         MusculoAlvo = musculoAlvo;
         Observacao = observacao;
-        AulaExtras = aulaExtras;
         AlunoId = alunoId;
-        Aluno = aluno;
     }
 }

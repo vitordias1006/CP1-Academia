@@ -11,8 +11,6 @@ public class GerenteConfiguration : IEntityTypeConfiguration<Gerente>
     {
         builder.ToTable("Gerentes");
         
-        builder.HasKey(g => g.Id);
-        
         builder.Property(f => f.Nome).IsRequired().HasMaxLength(60);
         
         builder.Property(f => f.Email).IsRequired().HasMaxLength(100);
@@ -36,13 +34,13 @@ public class GerenteConfiguration : IEntityTypeConfiguration<Gerente>
         builder.Property(g => g.NivelDeLideranca).HasMaxLength(6);
         
         builder.HasMany(g => g.Funcionarios)
-            .WithOne()
+            .WithOne(f => f.Gerente)
             .HasForeignKey(f => f.GerenteId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
         
         builder.HasMany(g => g.UnidadesAcademia)
-            .WithOne()
+            .WithOne(u => u.Gerente)
             .HasForeignKey(u => u.GerenteId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

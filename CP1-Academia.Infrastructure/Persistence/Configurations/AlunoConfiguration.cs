@@ -24,13 +24,13 @@ public class AlunoConfiguration : IEntityTypeConfiguration<Aluno>
         builder.Property(c => c.DataMatricula).IsRequired();
         
         builder.Property(c => c.Ativo).IsRequired();
-
-        builder.HasOne(c => c.Plano).WithOne().HasForeignKey<ClassLibrary1.Entities.Aluno>(uc => uc.PlanoId)
-            .OnDelete(DeleteBehavior.Cascade);
         
-        builder.HasOne(c => c.FichaTreino).WithOne().HasForeignKey<ClassLibrary1.Entities.Aluno>(uc => uc.FichaTreinoId)
+        builder.HasOne(c => c.Plano)
+            .WithMany(p => p.Alunos)
+            .HasForeignKey(c => c.PlanoId)
             .OnDelete(DeleteBehavior.Cascade);
-
+ 
+      
     }
     
 }

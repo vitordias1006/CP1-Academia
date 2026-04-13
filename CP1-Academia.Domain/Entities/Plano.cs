@@ -18,7 +18,7 @@ public class Plano : BaseEntity
     
     public List<Aluno> Alunos { get; private set; }
 
-    public Plano(double preco, DateTime dataDeAssinatura, DateTime dataDeRenovacao, string tipoPlano, bool fidelidade, bool ativo, List<Aluno> alunos)
+    public Plano(double preco, DateTime dataDeAssinatura, DateTime dataDeRenovacao, string tipoPlano, bool fidelidade, bool ativo)
     {
         Preco = preco;
         DataDeAssinatura = dataDeAssinatura;
@@ -26,6 +26,6 @@ public class Plano : BaseEntity
         TipoPlano = tipoPlano;
         Fidelidade = fidelidade;
         Ativo = ativo;
-        Alunos = alunos;
+
     }
 }

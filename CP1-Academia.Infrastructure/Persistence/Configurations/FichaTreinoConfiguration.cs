@@ -26,10 +26,14 @@ public class FichaTreinoConfiguration : IEntityTypeConfiguration<FichaTreino>
          builder.Property(f => f.Series).HasMaxLength(2);
          
          
+         builder.HasOne(f => f.Aluno)
+             .WithOne(a => a.FichaTreino)
+             .HasForeignKey<FichaTreino>(f => f.AlunoId)
+             .OnDelete(DeleteBehavior.Cascade);
+ 
          builder.HasMany(f => f.AulaExtras)
              .WithMany(a => a.FichaTreinos)
              .UsingEntity(j => j.ToTable("FichaTreinoAulasExtras"));
-
     }
     
 }

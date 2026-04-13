@@ -10,8 +10,6 @@ public class InstrutorConfiguration : IEntityTypeConfiguration<Instrutor>
     {
         builder.ToTable("Instrutor");
         
-        builder.HasKey(i => i.Id);
-        
         builder.Property(i => i.Nome).IsRequired().HasMaxLength(60);
         
         builder.Property(i => i.Email).IsRequired().HasMaxLength(100);

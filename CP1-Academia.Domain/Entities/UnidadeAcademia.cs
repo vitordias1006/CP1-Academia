@@ -21,17 +21,13 @@ public class UnidadeAcademia : BaseEntity
     public Guid LocalizacaoId { get; private set; }
     public Localizacao Localizacao { get; private set; }
 
-    public UnidadeAcademia(string telefone, bool ativo, DateTime horarioFuncionamento, Guid redeAcademiaId, RedeAcademia redeAcademia, Guid gerenteId, Gerente gerente, List<Funcionario> funcionarios, Guid localizacaoId, Localizacao localizacao)
+    public UnidadeAcademia(string telefone, bool ativo, DateTime horarioFuncionamento, Guid redeAcademiaId, Guid gerenteId, Guid localizacaoId)
     {
         Telefone = telefone;
         Ativo = ativo;
         HorarioFuncionamento = horarioFuncionamento;
         RedeAcademiaId = redeAcademiaId;
-        RedeAcademia = redeAcademia;
         GerenteId = gerenteId;
-        Gerente = gerente;
-        Funcionarios = funcionarios;
         LocalizacaoId = localizacaoId;
-        Localizacao = localizacao;
     }
 }

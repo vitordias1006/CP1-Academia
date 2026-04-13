@@ -24,18 +24,16 @@ public class Funcionario : BaseEntity
     public Guid UnidadeAcademiaId { get; private set; }
     public UnidadeAcademia UnidadeAcademia { get; private set; }
 
-    public Funcionario(string nome, string cpf, string email, string cargo, Guid gerenteId, Gerente gerente, double salario, DateTime dataDeContratacao, bool ativo, Guid unidadeAcademiaId, UnidadeAcademia unidadeAcademia)
+    public Funcionario(string nome, string cpf, string email, string cargo, Guid gerenteId, double salario, DateTime dataDeContratacao, bool ativo, Guid unidadeAcademiaId)
     {
         Nome = nome;
         Cpf = cpf;
         Email = email;
         Cargo = cargo;
         GerenteId = gerenteId;
-        Gerente = gerente;
         Salario = salario;
         DataDeContratacao = dataDeContratacao;
         Ativo = ativo;
         UnidadeAcademiaId = unidadeAcademiaId;
-        UnidadeAcademia = unidadeAcademia;
     }
 }

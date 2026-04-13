@@ -13,12 +13,11 @@ public class AulaExtra : BaseEntity
     public Guid FichaTreinoId { get; private set; }
     public List<FichaTreino> FichaTreinos { get; private set; }
     
-    public AulaExtra(string tipoDeAula, DateTime horarioAula, int capacidade, Guid fichaTreinoId, List<FichaTreino> fichaTreinos)
+    public AulaExtra(string tipoDeAula, DateTime horarioAula, int capacidade, Guid fichaTreinoId)
     {
         TipoDeAula = tipoDeAula;
         HorarioAula = horarioAula;
         Capacidade = capacidade;
         FichaTreinoId = fichaTreinoId;
-        FichaTreinos = fichaTreinos;
     }
 }
