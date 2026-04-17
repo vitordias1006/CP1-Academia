@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace CP1_Application.DTOs;
+namespace CP1_Academia.API.Application.DTOs;
 
 public record AulaExtraRequest(
     [property: Required(ErrorMessage = "O tipo de aula é obrigatório")]

@@ -1,4 +1,4 @@
-﻿namespace ClassLibrary1.Common;
+﻿namespace CP1_Academia.API.Domain.Common;
 
 public abstract class BaseEntity
 {

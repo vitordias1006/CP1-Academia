@@ -4,7 +4,7 @@
         <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <RootNamespace>CP1_Academia</RootNamespace>
+        <RootNamespace>CP1-Academia.API</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

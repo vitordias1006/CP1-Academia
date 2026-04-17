@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace CP1_Application.DTOs;
+namespace CP1_Academia.API.Application.DTOs;
 
 public record PlanoRequest(
     [property: Required(ErrorMessage = "O preço é obrigatório")]

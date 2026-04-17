@@ -1,6 +1,6 @@
-﻿using CP1_Application.DTOs;
+﻿using CP1_Academia.API.Application.DTOs;
 
-namespace CP1_Application.Services;
+namespace CP1_Academia.API.Application.Services;
 
 public interface IAlunoRepository
 {

@@ -1,6 +1,6 @@
-﻿using ClassLibrary1.Common;
+﻿using CP1_Academia.API.Domain.Common;
 
-namespace ClassLibrary1.Entities;
+namespace CP1_Academia.API.Domain.Entities;
 
 public class UnidadeAcademia : BaseEntity
 {

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using ClassLibrary1.Entities;
+using CP1_Academia.API.Domain.Entities;
 
-namespace CP1_Application.DTOs;
+namespace CP1_Academia.API.Application.DTOs;
 
 public record AlunoRequest(
     [property: Required(ErrorMessage = "O nome é obrigatório")]

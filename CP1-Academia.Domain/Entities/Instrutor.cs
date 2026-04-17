@@ -1,4 +1,4 @@
-﻿namespace ClassLibrary1.Entities;
+﻿namespace CP1_Academia.API.Domain.Entities;
 
 public class Instrutor : Funcionario
 {

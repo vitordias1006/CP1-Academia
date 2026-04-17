@@ -1,8 +1,8 @@
-﻿using CP1_Academia.Infraestructure.Persistence;
-using CP1_Application.DTOs;
-using CP1_Application.Services;
+﻿using CP1_Academia.API.Application.DTOs;
+using CP1_Academia.API.Application.Services;
+using CP1_Academia.API.Infrastructure.Persistence;
 
-namespace CP1_Academia.Infraestructure;
+namespace CP1_Academia.API.Infrastructure;
 
 public sealed class AlunoRepository (AcademiaContext context) : IAlunoRepository
 {

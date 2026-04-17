@@ -1,8 +1,8 @@
-using CP1_Academia.Infraestructure;
-using CP1_Academia.Infraestructure.Persistence;
-using CP1_Application.Services;
+using CP1_Academia.API.Application.Services;
+using CP1_Academia.API.Infrastructure;
+using CP1_Academia.API.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-namespace CP1_Academia;
+namespace CP1_Academia.API;
 public class Program
 {
     public static void Main(string[] args)

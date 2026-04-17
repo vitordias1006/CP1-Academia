@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace CP1_Application.DTOs;
+namespace CP1_Academia.API.Application.DTOs;
 
 public record GerenteRequest(
     [property: Required(ErrorMessage = "O nome é obrigatório")]
