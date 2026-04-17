@@ -34,7 +34,7 @@ public record AlunoRequest(
     [property: Required(ErrorMessage = "O identificador do plano é obrigatório")]
     Guid PlanoId)
 {
-    public Aluno toDomain() => new Aluno(
+    public Aluno ToDomain() => new Aluno(
         Nome,
         Cpf,
         Email, 

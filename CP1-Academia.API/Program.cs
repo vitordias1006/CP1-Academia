@@ -1,4 +1,6 @@
+using CP1_Academia.Infraestructure;
 using CP1_Academia.Infraestructure.Persistence;
+using CP1_Application.Services;
 using Microsoft.EntityFrameworkCore;
 namespace CP1_Academia;
 public class Program
@@ -14,7 +16,7 @@ public class Program
         });
         
         
-        // builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+        builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
 
         builder.Services.AddControllers();
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
