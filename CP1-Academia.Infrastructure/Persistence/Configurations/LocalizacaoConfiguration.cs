@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CP1_Academia.API.Infrastructure.Persistence.Configurations;
+namespace CP1_Academia.Infrastructure.Persistence.Configurations;
 
 public class LocalizacaoConfiguration : IEntityTypeConfiguration<Localizacao>
 {
@@ -21,7 +21,7 @@ public class LocalizacaoConfiguration : IEntityTypeConfiguration<Localizacao>
         
         builder.HasOne(x => x.UnidadeAcademia)
             .WithOne()
-            .HasForeignKey<Domain.Entities.Localizacao>(uc => uc.UnidadeAcademiaId)
+            .HasForeignKey<API.Domain.Entities.Localizacao>(uc => uc.UnidadeAcademiaId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using CP1_Academia.API.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace CP1_Academia.API.Infrastructure.Persistence;
+namespace CP1_Academia.Infrastructure.Persistence;
 
 public class AcademiaContext (DbContextOptions<AcademiaContext> options) : DbContext(options)
 {

@@ -1,6 +1,6 @@
 using CP1_Academia.API.Application.Services;
-using CP1_Academia.API.Infrastructure;
-using CP1_Academia.API.Infrastructure.Persistence;
+using CP1_Academia.Infrastructure.Persistence;
+using CP1_Academia.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 namespace CP1_Academia.API;
 public class Program
@@ -21,13 +21,18 @@ public class Program
         builder.Services.AddControllers();
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 
+        // Configure the HTTP request pipeline.
+       builder.Services.AddEndpointsApiExplorer();
+       builder.Services.AddSwaggerGen();
+       
         var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.MapOpenApi();
-        }
+       
+       if (app.Environment.IsDevelopment())
+       {
+           app.UseSwagger();
+           app.UseSwaggerUI();
+       }
 
         app.UseHttpsRedirection();
 

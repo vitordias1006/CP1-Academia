@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CP1_Academia.API.Infrastructure.Persistence.Configurations;
+namespace CP1_Academia.Infrastructure.Persistence.Configurations;
 
 public class FichaTreinoConfiguration : IEntityTypeConfiguration<FichaTreino>
 {
