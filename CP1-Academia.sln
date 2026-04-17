@@ -1,12 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP1-Academia", "CP1-Academia\CP1-Academia.csproj", "{5DC2D124-19DC-4087-AE00-78EA6153697D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP1-Academia.API", "CP1-Academia.API\CP1-Academia.API.csproj", "{5DC2D124-19DC-4087-AE00-78EA6153697D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{84F17F8B-0C16-44E6-AD09-1770761FA01E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP1-Academia.Domain", "CP1-Academia.Domain\CP1-Academia.Domain.csproj", "{593F5698-0DFA-4282-85A9-DF2C82ADF6D6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP1-Academia.Infrastructure", "CP1-Academia.Infrastructure\CP1-Academia.Infrastructure.csproj", "{1B103BE9-4763-4632-BBCB-9413072817B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP1-Academia.Application", "CP1-Academia.Application\CP1-Academia.Application.csproj", "{8B5EC8C8-1048-4CEB-8232-342862C14ED9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +28,15 @@ Global
 		{1B103BE9-4763-4632-BBCB-9413072817B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B103BE9-4763-4632-BBCB-9413072817B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B103BE9-4763-4632-BBCB-9413072817B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B5EC8C8-1048-4CEB-8232-342862C14ED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B5EC8C8-1048-4CEB-8232-342862C14ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B5EC8C8-1048-4CEB-8232-342862C14ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B5EC8C8-1048-4CEB-8232-342862C14ED9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5DC2D124-19DC-4087-AE00-78EA6153697D} = {84F17F8B-0C16-44E6-AD09-1770761FA01E}
 		{593F5698-0DFA-4282-85A9-DF2C82ADF6D6} = {84F17F8B-0C16-44E6-AD09-1770761FA01E}
 		{1B103BE9-4763-4632-BBCB-9413072817B4} = {84F17F8B-0C16-44E6-AD09-1770761FA01E}
+		{8B5EC8C8-1048-4CEB-8232-342862C14ED9} = {84F17F8B-0C16-44E6-AD09-1770761FA01E}
 	EndGlobalSection
 EndGlobal
