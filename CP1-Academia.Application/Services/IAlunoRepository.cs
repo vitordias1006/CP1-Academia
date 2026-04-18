@@ -10,8 +10,6 @@ public interface IAlunoRepository
     
     AlunoResponse Create(AlunoRequest request);
     
-    bool ExistsByTitle(string title);
-    
     bool ExistsById(Guid id);
     
     bool Delete(Guid id);

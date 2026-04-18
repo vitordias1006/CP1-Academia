@@ -26,10 +26,8 @@ public sealed class AlunoRepository (AcademiaContext context) : IAlunoRepository
             throw new ArgumentNullException(nameof(request));
 
         if (string.IsNullOrWhiteSpace(request.Nome))
-            throw new InvalidOperationException("O título do filme é obrigatório");
-
-        if (ExistsByTitle(request.Nome))
-            throw new InvalidOperationException("Já existe um filme com este título");
+            throw new InvalidOperationException("O nome do aluno é obrigatório");
+        
 
         var aluno = request.ToDomain();
 
@@ -38,12 +36,7 @@ public sealed class AlunoRepository (AcademiaContext context) : IAlunoRepository
 
         return AlunoResponse.FromDomain(aluno);
     }
-
-    public bool ExistsByTitle(string title)
-    {
-        throw new NotImplementedException();
-    }
-
+    
     public bool ExistsById(Guid id)
     {
         return context.Alunos.Any(a=> a.Id == id);
