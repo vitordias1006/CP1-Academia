@@ -20,7 +20,7 @@ public class LocalizacaoConfiguration : IEntityTypeConfiguration<Localizacao>
         builder.Property(x => x.Numero);
         
         builder.HasOne(x => x.UnidadeAcademia)
-            .WithOne()
+            .WithOne(u => u.Localizacao)  
             .HasForeignKey<Localizacao>(uc => uc.UnidadeAcademiaId)
             .OnDelete(DeleteBehavior.Cascade);
     }

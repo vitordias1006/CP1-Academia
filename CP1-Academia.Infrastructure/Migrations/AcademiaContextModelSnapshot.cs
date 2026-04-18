@@ -37,7 +37,7 @@ namespace CP1_Academia.Infrastructure.Migrations
                     b.ToTable("FichaTreinoAulasExtras", (string)null);
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.Aluno", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.Aluno", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -64,11 +64,9 @@ namespace CP1_Academia.Infrastructure.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("NVARCHAR2(60)");
 
-                    b.Property<Guid>("PlanoId")
-                        .HasColumnType("RAW(16)");
-
-                    b.Property<Guid>("PlanoId1")
-                        .HasColumnType("RAW(16)");
+                    b.Property<byte[]>("PlanoId")
+                        .IsRequired()
+                        .HasColumnType("RAW(900)");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
@@ -79,12 +77,10 @@ namespace CP1_Academia.Infrastructure.Migrations
 
                     b.HasIndex("PlanoId");
 
-                    b.HasIndex("PlanoId1");
-
                     b.ToTable("Alunos", (string)null);
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.AulaExtra", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.AulaExtra", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,7 +104,7 @@ namespace CP1_Academia.Infrastructure.Migrations
                     b.ToTable("AulaExtras", (string)null);
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.FichaTreino", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.FichaTreino", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -153,7 +149,7 @@ namespace CP1_Academia.Infrastructure.Migrations
                     b.ToTable("FichaTreino", (string)null);
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.Funcionario", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.Funcionario", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -206,7 +202,7 @@ namespace CP1_Academia.Infrastructure.Migrations
                     b.UseTptMappingStrategy();
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.Localizacao", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.Localizacao", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -246,7 +242,7 @@ namespace CP1_Academia.Infrastructure.Migrations
                     b.ToTable("Localizacao", (string)null);
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.Plano", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.Plano", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -277,7 +273,7 @@ namespace CP1_Academia.Infrastructure.Migrations
                     b.ToTable("Planos", (string)null);
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.RedeAcademia", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.RedeAcademia", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -302,7 +298,7 @@ namespace CP1_Academia.Infrastructure.Migrations
                     b.ToTable("RedeAcademia", (string)null);
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.UnidadeAcademia", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.UnidadeAcademia", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -320,9 +316,6 @@ namespace CP1_Academia.Infrastructure.Migrations
                     b.Property<Guid>("LocalizacaoId")
                         .HasColumnType("RAW(16)");
 
-                    b.Property<Guid>("LocalizacaoId1")
-                        .HasColumnType("RAW(16)");
-
                     b.Property<Guid>("RedeAcademiaId")
                         .HasColumnType("RAW(16)");
 
@@ -334,16 +327,14 @@ namespace CP1_Academia.Infrastructure.Migrations
 
                     b.HasIndex("GerenteId");
 
-                    b.HasIndex("LocalizacaoId1");
-
                     b.HasIndex("RedeAcademiaId");
 
                     b.ToTable("UnidadeAcademia", (string)null);
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.Gerente", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.Gerente", b =>
                 {
-                    b.HasBaseType("CP1_Academia.API.Domain.Entities.Funcionario");
+                    b.HasBaseType("CP1_Academia.Domain.Entities.Funcionario");
 
                     b.Property<string>("AreaDeResponsabilidade")
                         .IsRequired()
@@ -365,9 +356,9 @@ namespace CP1_Academia.Infrastructure.Migrations
                     b.ToTable("Gerentes", (string)null);
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.Instrutor", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.Instrutor", b =>
                 {
-                    b.HasBaseType("CP1_Academia.API.Domain.Entities.Funcionario");
+                    b.HasBaseType("CP1_Academia.Domain.Entities.Funcionario");
 
                     b.Property<string>("Cref")
                         .IsRequired()
@@ -379,56 +370,50 @@ namespace CP1_Academia.Infrastructure.Migrations
 
             modelBuilder.Entity("AulaExtraFichaTreino", b =>
                 {
-                    b.HasOne("CP1_Academia.API.Domain.Entities.AulaExtra", null)
+                    b.HasOne("CP1_Academia.Domain.Entities.AulaExtra", null)
                         .WithMany()
                         .HasForeignKey("AulaExtrasId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CP1_Academia.API.Domain.Entities.FichaTreino", null)
+                    b.HasOne("CP1_Academia.Domain.Entities.FichaTreino", null)
                         .WithMany()
                         .HasForeignKey("FichaTreinosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.Aluno", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.Aluno", b =>
                 {
-                    b.HasOne("CP1_Academia.API.Domain.Entities.Plano", null)
+                    b.HasOne("CP1_Academia.Domain.Entities.Plano", "Plano")
                         .WithMany("Alunos")
                         .HasForeignKey("PlanoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CP1_Academia.API.Domain.Entities.Plano", "Plano")
-                        .WithMany()
-                        .HasForeignKey("PlanoId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Plano");
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.FichaTreino", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.FichaTreino", b =>
                 {
-                    b.HasOne("CP1_Academia.API.Domain.Entities.Aluno", "Aluno")
+                    b.HasOne("CP1_Academia.Domain.Entities.Aluno", "Aluno")
                         .WithOne("FichaTreino")
-                        .HasForeignKey("CP1_Academia.API.Domain.Entities.FichaTreino", "AlunoId")
+                        .HasForeignKey("CP1_Academia.Domain.Entities.FichaTreino", "AlunoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Aluno");
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.Funcionario", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.Funcionario", b =>
                 {
-                    b.HasOne("CP1_Academia.API.Domain.Entities.Gerente", "Gerente")
+                    b.HasOne("CP1_Academia.Domain.Entities.Gerente", "Gerente")
                         .WithMany("Funcionarios")
                         .HasForeignKey("GerenteId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("CP1_Academia.API.Domain.Entities.UnidadeAcademia", "UnidadeAcademia")
+                    b.HasOne("CP1_Academia.Domain.Entities.UnidadeAcademia", "UnidadeAcademia")
                         .WithMany("Funcionarios")
                         .HasForeignKey("UnidadeAcademiaId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -439,32 +424,26 @@ namespace CP1_Academia.Infrastructure.Migrations
                     b.Navigation("UnidadeAcademia");
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.Localizacao", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.Localizacao", b =>
                 {
-                    b.HasOne("CP1_Academia.API.Domain.Entities.UnidadeAcademia", "UnidadeAcademia")
-                        .WithOne()
-                        .HasForeignKey("CP1_Academia.API.Domain.Entities.Localizacao", "UnidadeAcademiaId")
+                    b.HasOne("CP1_Academia.Domain.Entities.UnidadeAcademia", "UnidadeAcademia")
+                        .WithOne("Localizacao")
+                        .HasForeignKey("CP1_Academia.Domain.Entities.Localizacao", "UnidadeAcademiaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("UnidadeAcademia");
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.UnidadeAcademia", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.UnidadeAcademia", b =>
                 {
-                    b.HasOne("CP1_Academia.API.Domain.Entities.Gerente", "Gerente")
+                    b.HasOne("CP1_Academia.Domain.Entities.Gerente", "Gerente")
                         .WithMany("UnidadesAcademia")
                         .HasForeignKey("GerenteId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("CP1_Academia.API.Domain.Entities.Localizacao", "Localizacao")
-                        .WithMany()
-                        .HasForeignKey("LocalizacaoId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CP1_Academia.API.Domain.Entities.RedeAcademia", "RedeAcademia")
+                    b.HasOne("CP1_Academia.Domain.Entities.RedeAcademia", "RedeAcademia")
                         .WithMany("UnidadesAcademia")
                         .HasForeignKey("RedeAcademiaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -472,51 +451,52 @@ namespace CP1_Academia.Infrastructure.Migrations
 
                     b.Navigation("Gerente");
 
-                    b.Navigation("Localizacao");
-
                     b.Navigation("RedeAcademia");
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.Gerente", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.Gerente", b =>
                 {
-                    b.HasOne("CP1_Academia.API.Domain.Entities.Funcionario", null)
+                    b.HasOne("CP1_Academia.Domain.Entities.Funcionario", null)
                         .WithOne()
-                        .HasForeignKey("CP1_Academia.API.Domain.Entities.Gerente", "Id")
+                        .HasForeignKey("CP1_Academia.Domain.Entities.Gerente", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.Instrutor", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.Instrutor", b =>
                 {
-                    b.HasOne("CP1_Academia.API.Domain.Entities.Funcionario", null)
+                    b.HasOne("CP1_Academia.Domain.Entities.Funcionario", null)
                         .WithOne()
-                        .HasForeignKey("CP1_Academia.API.Domain.Entities.Instrutor", "Id")
+                        .HasForeignKey("CP1_Academia.Domain.Entities.Instrutor", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.Aluno", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.Aluno", b =>
                 {
                     b.Navigation("FichaTreino")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.Plano", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.Plano", b =>
                 {
                     b.Navigation("Alunos");
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.RedeAcademia", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.RedeAcademia", b =>
                 {
                     b.Navigation("UnidadesAcademia");
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.UnidadeAcademia", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.UnidadeAcademia", b =>
                 {
                     b.Navigation("Funcionarios");
+
+                    b.Navigation("Localizacao")
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("CP1_Academia.API.Domain.Entities.Gerente", b =>
+            modelBuilder.Entity("CP1_Academia.Domain.Entities.Gerente", b =>
                 {
                     b.Navigation("Funcionarios");
 

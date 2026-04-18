@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using CP1_Academia.Domain.Entities;
 
 namespace CP1_Academia.API.Application.DTOs;
 
@@ -8,11 +9,15 @@ public record PlanoRequest(
     double Preco,
 
     [property: Required(ErrorMessage = "A data de assinatura é obrigatória")]
-    [property: Range(typeof(DateTime), "2000-01-01", "2100-12-31", ErrorMessage = "A data de assinatura deve estar entre 2000 e 2100")]
+    [property:
+        Range(typeof(DateTime), "2000-01-01", "2100-12-31",
+            ErrorMessage = "A data de assinatura deve estar entre 2000 e 2100")]
     DateTime DataDeAssinatura,
 
     [property: Required(ErrorMessage = "A data de renovação é obrigatória")]
-    [property: Range(typeof(DateTime), "2000-01-01", "2100-12-31", ErrorMessage = "A data de renovação deve estar entre 2000 e 2100")]
+    [property:
+        Range(typeof(DateTime), "2000-01-01", "2100-12-31",
+            ErrorMessage = "A data de renovação deve estar entre 2000 e 2100")]
     DateTime DataDeRenovacao,
 
     [property: Required(ErrorMessage = "O tipo de plano é obrigatório")]
@@ -23,4 +28,13 @@ public record PlanoRequest(
     bool Fidelidade,
 
     [property: Required(ErrorMessage = "O campo ativo é obrigatório")]
-    bool Ativo);
+    bool Ativo)
+{
+    public Plano ToDomain() => new Plano(
+        Preco,
+        DataDeAssinatura,
+        DataDeRenovacao,
+        TipoPlano,
+        Fidelidade,
+        Ativo);
+}

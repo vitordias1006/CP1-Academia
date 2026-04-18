@@ -23,11 +23,6 @@ public class PlanoConfiguration : IEntityTypeConfiguration<Plano>
         builder.Property(p => p.Fidelidade);
 
         builder.Property(p => p.Ativo);
-
-        builder.HasMany(p => p.Alunos)
-            .WithOne()
-            .HasForeignKey(a => a.PlanoId)
-            .OnDelete(DeleteBehavior.Cascade);
-
+        
     }
 }

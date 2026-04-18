@@ -28,6 +28,13 @@ public class AcademiaContext (DbContextOptions<AcademiaContext> options) : DbCon
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Aluno>()
+            .Property(x => x.PlanoId)
+            .HasConversion(
+                v => v.ToByteArray(),
+                v => new Guid(v)
+            );
+        
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AcademiaContext).Assembly);
     }
 }
