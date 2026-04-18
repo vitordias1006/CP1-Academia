@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using CP1_Academia.API.Domain.Entities;
+using CP1_Academia.Domain.Entities;
 
 namespace CP1_Academia.API.Application.DTOs;
 

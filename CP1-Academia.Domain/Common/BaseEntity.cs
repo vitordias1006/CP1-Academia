@@ -1,4 +1,4 @@
-﻿namespace CP1_Academia.API.Domain.Common;
+﻿namespace CP1_Academia.Domain.Common;
 
 public abstract class BaseEntity
 {

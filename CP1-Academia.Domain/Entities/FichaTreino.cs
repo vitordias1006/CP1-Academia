@@ -1,6 +1,6 @@
-﻿using CP1_Academia.API.Domain.Common;
+﻿using CP1_Academia.Domain.Common;
 
-namespace CP1_Academia.API.Domain.Entities;
+namespace CP1_Academia.Domain.Entities;
 
 public class FichaTreino : BaseEntity
 {

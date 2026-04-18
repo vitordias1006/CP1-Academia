@@ -1,4 +1,4 @@
-﻿using CP1_Academia.API.Domain.Entities;
+﻿using CP1_Academia.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -21,7 +21,7 @@ public class LocalizacaoConfiguration : IEntityTypeConfiguration<Localizacao>
         
         builder.HasOne(x => x.UnidadeAcademia)
             .WithOne()
-            .HasForeignKey<API.Domain.Entities.Localizacao>(uc => uc.UnidadeAcademiaId)
+            .HasForeignKey<Localizacao>(uc => uc.UnidadeAcademiaId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace CP1_Academia.API.Domain.Entities;
+﻿namespace CP1_Academia.Domain.Entities;
 
 public class Gerente : Funcionario
 {

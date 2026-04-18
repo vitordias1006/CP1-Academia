@@ -1,4 +1,4 @@
-﻿using CP1_Academia.API.Domain.Entities;
+﻿using CP1_Academia.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
