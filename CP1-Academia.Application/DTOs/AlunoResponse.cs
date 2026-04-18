@@ -3,6 +3,7 @@
 namespace CP1_Academia.API.Application.DTOs;
 
 public record AlunoResponse(
+    Guid Id,
     string Nome,
     string Cpf,
     string Email,
@@ -11,5 +12,5 @@ public record AlunoResponse(
     bool Ativo,
     Guid PlanoId)
 {
-    public static AlunoResponse FromDomain(Aluno aluno) => new (aluno.Nome, aluno.Cpf, aluno.Email, aluno.Telefone, aluno.DataMatricula, aluno.Ativo, aluno.PlanoId);
+    public static AlunoResponse FromDomain(Aluno aluno) => new (aluno.Id, aluno.Nome, aluno.Cpf, aluno.Email, aluno.Telefone, aluno.DataMatricula, aluno.Ativo, aluno.PlanoId);
 }

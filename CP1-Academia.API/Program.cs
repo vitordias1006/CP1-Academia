@@ -17,6 +17,7 @@ public class Program
         
         
         builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
+        builder.Services.AddScoped<IPlanoRepository, PlanoRepository>();
 
         builder.Services.AddControllers();
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
