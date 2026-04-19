@@ -22,7 +22,7 @@ public class Program
         builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
         builder.Services.AddScoped<IGerenteRepository, GerenteRepository>();
         builder.Services.AddScoped<IInstrutorRepository, InstrutorRepository>();
-        builder.Services.AddScoped<ILocalizacaoRespository, LocalizacaoRespository>();
+        builder.Services.AddScoped<ILocalizacaoRespository, LocalizacaoRepository>();
         builder.Services.AddScoped<IPlanoRepository, PlanoRepository>();
         builder.Services.AddScoped<IRedeAcademiaRepository, RedeAcademiaRepository>();
         builder.Services.AddScoped<IUnidadeAcademiaRepository, UnidadeAcademiaRepository>();

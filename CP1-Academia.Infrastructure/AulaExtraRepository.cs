@@ -1,0 +1,56 @@
+﻿using CP1_Academia.API.Application.DTOs;
+using CP1_Academia.API.Application.Services;
+using CP1_Academia.Infrastructure.Persistence;
+
+namespace CP1_Academia.Infrastructure;
+
+public sealed class AulaExtraRepository (AcademiaContext context) : IAulaExtraRepository
+{
+    public IReadOnlyList<AulaExtraRequest> GetAll()
+    {
+        return context.AulaExtras.OrderBy(a => a.Capacidade)
+            .Select(AlunoResponse.FromDomain)
+            .ToList();
+    }
+
+    public AulaExtraRequest? GetById(Guid id)
+    {
+        var aulaExtra = context.AulaExtras.FirstOrDefault(m=> m.Id == id);
+        
+        return aulaExtra is null ? null : AulaExtraRequest.FromDomain(aulaExtra);
+    }
+
+    public AulaExtraRequest Create(AulaExtraRequest request)
+    {
+        if (request is null)
+            throw new ArgumentNullException(nameof(request));
+
+        if (string.IsNullOrWhiteSpace(request.TipoDeAula))
+            throw new InvalidOperationException("O Tipo de aula é obrigatório");
+        
+
+        var aulaExtra = request.ToDomain();
+
+        context.AulaExtras.Add(aulaExtra);
+        context.SaveChanges();
+
+        return AulaExtraRequest.FromDomain(aulaExtra);
+    }
+    
+    public bool ExistsById(Guid id)
+    {
+        return context.AulaExtras.Any(a=> a.Id == id);
+    }
+
+    public bool Delete(Guid id)
+    {
+        var aulaExtra = context.AulaExtras.FirstOrDefault(a => a.Id == id);
+        if (context is null)
+            return false;
+
+        context.AulaExtras.Remove(aulaExtra);
+        context.SaveChanges();
+
+        return true;
+    }
+}
