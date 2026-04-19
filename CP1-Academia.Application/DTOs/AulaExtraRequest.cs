@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using CP1_Academia.Domain.Entities;
 
 
 namespace CP1_Academia.API.Application.DTOs;
@@ -9,7 +10,8 @@ public record AulaExtraRequest(
     string TipoDeAula,
 
     [property: Required(ErrorMessage = "O horário da aula é obrigatório")]
-    [property: Range(typeof(DateTime), "2000-01-01", "2100-12-31", ErrorMessage = "O horário deve estar entre 2000 e 2100")]
+    [property:
+        Range(typeof(DateTime), "2000-01-01", "2100-12-31", ErrorMessage = "O horário deve estar entre 2000 e 2100")]
     DateTime HorarioAula,
 
     [property: Required(ErrorMessage = "A capacidade é obrigatória")]
@@ -17,4 +19,11 @@ public record AulaExtraRequest(
     int Capacidade,
 
     [property: Required(ErrorMessage = "O identificador da ficha de treino é obrigatório")]
-    Guid FichaTreinoId);
+    Guid FichaTreinoId)
+{
+    public AulaExtra ToDomain() => new(
+        TipoDeAula,
+        HorarioAula,
+        Capacidade,
+        FichaTreinoId);
+}

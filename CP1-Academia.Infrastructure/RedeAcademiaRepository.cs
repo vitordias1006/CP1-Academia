@@ -6,21 +6,21 @@ namespace CP1_Academia.Infrastructure;
 
 public sealed class RedeAcademiaRepository (AcademiaContext context) : IRedeAcademiaRepository
 {
-    public IReadOnlyList<RedeAcademiaRequest> GetAll()
+    public IReadOnlyList<RedeAcademiaResponse> GetAll()
     {
         return context.RedeAcademias.OrderBy(a => a.Nome)
-            .Select(RedeAcademiaRequest.FromDomain)
+            .Select(RedeAcademiaResponse.FromDomain)
             .ToList();
     }
 
-    public RedeAcademiaRequest? GetById(Guid id)
+    public RedeAcademiaResponse? GetById(Guid id)
     {
         var redeAcademia = context.RedeAcademias.FirstOrDefault(m=> m.Id == id);
         
-        return redeAcademia is null ? null : RedeAcademiaRequest.FromDomain(redeAcademia);
+        return redeAcademia is null ? null : RedeAcademiaResponse.FromDomain(redeAcademia);
     }
 
-    public RedeAcademiaRequest Create(RedeAcademiaRequest request)
+    public RedeAcademiaResponse Create(RedeAcademiaRequest request)
     {
         if (request is null)
             throw new ArgumentNullException(nameof(request));
@@ -34,7 +34,7 @@ public sealed class RedeAcademiaRepository (AcademiaContext context) : IRedeAcad
         context.RedeAcademias.Add(redeAcademia);
         context.SaveChanges();
 
-        return RedeAcademiaRequest.FromDomain(redeAcademia);
+        return RedeAcademiaResponse.FromDomain(redeAcademia);
     }
     
     public bool ExistsById(Guid id)

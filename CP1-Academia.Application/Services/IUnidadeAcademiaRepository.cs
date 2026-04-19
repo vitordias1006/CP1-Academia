@@ -4,11 +4,11 @@ namespace CP1_Academia.API.Application.Services;
 
 public interface IUnidadeAcademiaRepository
 {
-    IReadOnlyList<UnidadeAcademiaRequest> GetAll();
+    IReadOnlyList<UnidadeAcademiaResponse> GetAll();
     
-    UnidadeAcademiaRequest? GetById(Guid id);
+    UnidadeAcademiaResponse? GetById(Guid id);
     
-    UnidadeAcademiaRequest Create(UnidadeAcademiaRequest request);
+    UnidadeAcademiaResponse Create(UnidadeAcademiaRequest request);
     
     bool ExistsById(Guid id);
     

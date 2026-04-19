@@ -4,11 +4,11 @@ namespace CP1_Academia.API.Application.Services;
 
 public interface IGerenteRepository
 {
-    IReadOnlyList<GerenteRequest> GetAll();
+    IReadOnlyList<GerenteResponse> GetAll();
     
-    GerenteRequest? GetById(Guid id);
+    GerenteResponse? GetById(Guid id);
     
-    GerenteRequest Create(GerenteRequest request);
+    GerenteResponse Create(GerenteRequest request);
     
     bool ExistsById(Guid id);
     

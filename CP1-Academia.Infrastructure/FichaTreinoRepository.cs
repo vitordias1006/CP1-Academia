@@ -6,21 +6,21 @@ namespace CP1_Academia.Infrastructure;
 
 public sealed class FichaTreinoRepository (AcademiaContext context) : IFichaTreinoRepository
 {
-    public IReadOnlyList<FichaTreinoRequest> GetAll()
+    public IReadOnlyList<FichaTreinoResponse> GetAll()
     {
         return context.FichaTreinos.OrderBy(a => a.Aluno)
-            .Select(FichaTreinoRequest.FromDomain)
+            .Select(FichaTreinoResponse.FromDomain)
             .ToList();
     }
 
-    public FichaTreinoRequest? GetById(Guid id)
+    public FichaTreinoResponse? GetById(Guid id)
     {
         var fichaTreino = context.FichaTreinos.FirstOrDefault(m=> m.Id == id);
         
-        return fichaTreino is null ? null : FichaTreinoRequest.FromDomain(fichaTreino);
+        return fichaTreino is null ? null : FichaTreinoResponse.FromDomain(fichaTreino);
     }
 
-    public FichaTreinoRequest Create(FichaTreinoRequest request)
+    public FichaTreinoResponse Create(FichaTreinoRequest request)
     {
         if (request is null)
             throw new ArgumentNullException(nameof(request));
@@ -34,7 +34,7 @@ public sealed class FichaTreinoRepository (AcademiaContext context) : IFichaTrei
         context.FichaTreinos.Add(fichaTreino);
         context.SaveChanges();
 
-        return FichaTreinoRequest.FromDomain(fichaTreino);
+        return FichaTreinoResponse.FromDomain(fichaTreino);
     }
     
     public bool ExistsById(Guid id)

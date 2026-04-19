@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using CP1_Academia.Domain.Entities;
 
 namespace CP1_Academia.API.Application.DTOs;
 
@@ -28,4 +29,14 @@ public record LocalizacaoRequest(
     int Numero,
 
     [property: Required(ErrorMessage = "O identificador da unidade é obrigatório")]
-    Guid UnidadeAcademiaId);
+    Guid UnidadeAcademiaId)
+{
+    public Localizacao ToDomain() => new(
+        Estado,
+        Cidade,
+        Bairro,
+        Cep,
+        Rua,
+        Numero,
+        UnidadeAcademiaId);
+}

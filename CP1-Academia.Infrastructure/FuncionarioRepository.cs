@@ -6,21 +6,21 @@ namespace CP1_Academia.Infrastructure;
 
 public sealed class FuncionarioRepository (AcademiaContext context) : IFuncionarioRepository
 {
-    public IReadOnlyList<FuncionarioRequest> GetAll()
+    public IReadOnlyList<FuncionarioResponse> GetAll()
     {
         return context.Funcionarios.OrderBy(a => a.Nome)
-            .Select(FuncionarioRequest.FromDomain)
+            .Select(FuncionarioResponse.FromDomain)
             .ToList();
     }
 
-    public FuncionarioRequest? GetById(Guid id)
+    public FuncionarioResponse? GetById(Guid id)
     {
         var funcionario = context.Funcionarios.FirstOrDefault(m=> m.Id == id);
         
-        return funcionario is null ? null : FuncionarioRequest.FromDomain(funcionario);
+        return funcionario is null ? null : FuncionarioResponse.FromDomain(funcionario);
     }
 
-    public FuncionarioRequest Create(FuncionarioRequest request)
+    public FuncionarioResponse Create(FuncionarioRequest request)
     {
         if (request is null)
             throw new ArgumentNullException(nameof(request));
@@ -34,7 +34,7 @@ public sealed class FuncionarioRepository (AcademiaContext context) : IFuncionar
         context.Funcionarios.Add(funcionario);
         context.SaveChanges();
 
-        return FuncionarioRequest.FromDomain(funcionario);
+        return FuncionarioResponse.FromDomain(funcionario);
     }
     
     public bool ExistsById(Guid id)

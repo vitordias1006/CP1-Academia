@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using CP1_Academia.Domain.Entities;
 
 namespace CP1_Academia.API.Application.DTOs;
 
@@ -16,5 +17,14 @@ public record RedeAcademiaRequest(
     string Cnpj,
 
     [property: Required(ErrorMessage = "A data de fundação é obrigatória")]
-    [property: Range(typeof(DateTime), "1900-01-01", "2100-12-31", ErrorMessage = "A data de fundação deve estar entre 1900 e 2100")]
-    DateTime DataFundacao);
+    [property:
+        Range(typeof(DateTime), "1900-01-01", "2100-12-31",
+            ErrorMessage = "A data de fundação deve estar entre 1900 e 2100")]
+    DateTime DataFundacao)
+{
+    public RedeAcademia ToDomain() => new(
+        Nome, 
+        QntdUnidades, 
+        Cnpj,
+        DataFundacao);
+}

@@ -4,11 +4,11 @@ namespace CP1_Academia.API.Application.Services;
 
 public interface IInstrutorRepository
 {
-    IReadOnlyList<InstrutorRequest> GetAll();
+    IReadOnlyList<InstrutorResponse> GetAll();
     
-    InstrutorRequest? GetById(Guid id);
+    InstrutorResponse? GetById(Guid id);
     
-    InstrutorRequest Create(InstrutorRequest request);
+    InstrutorResponse Create(InstrutorRequest request);
     
     bool ExistsById(Guid id);
     

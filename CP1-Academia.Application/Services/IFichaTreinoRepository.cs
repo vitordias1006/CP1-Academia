@@ -4,11 +4,11 @@ namespace CP1_Academia.API.Application.Services;
 
 public interface IFichaTreinoRepository
 {
-    IReadOnlyList<FichaTreinoRequest> GetAll();
+    IReadOnlyList<FichaTreinoResponse> GetAll();
     
-    FichaTreinoRequest? GetById(Guid id);
+    FichaTreinoResponse? GetById(Guid id);
     
-    FichaTreinoRequest Create(FichaTreinoRequest request);
+    FichaTreinoResponse Create(FichaTreinoRequest request);
     
     bool ExistsById(Guid id);
     

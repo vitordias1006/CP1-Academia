@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using CP1_Academia.Domain.Entities;
 
 namespace CP1_Academia.API.Application.DTOs;
 
@@ -28,11 +29,25 @@ public record FuncionarioRequest(
     double Salario,
 
     [property: Required(ErrorMessage = "A data de contratação é obrigatória")]
-    [property: Range(typeof(DateTime), "1900-01-01", "2100-12-31", ErrorMessage = "A data de contratação deve estar entre 1900 e 2100")]
+    [property:
+        Range(typeof(DateTime), "1900-01-01", "2100-12-31",
+            ErrorMessage = "A data de contratação deve estar entre 1900 e 2100")]
     DateTime DataDeContratacao,
 
     [property: Required(ErrorMessage = "O campo ativo é obrigatório")]
     bool Ativo,
 
     [property: Required(ErrorMessage = "O identificador da unidade é obrigatório")]
-    Guid UnidadeAcademiaId);
+    Guid UnidadeAcademiaId)
+{
+    public Funcionario ToDomain() => new(
+        Nome,
+        Cpf,
+        Email,
+        Cargo,
+        GerenteId,
+        Salario,
+        DataDeContratacao,
+        Ativo,
+        UnidadeAcademiaId);
+}

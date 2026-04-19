@@ -4,11 +4,11 @@ namespace CP1_Academia.API.Application.Services;
 
 public interface IFuncionarioRepository
 {
-    IReadOnlyList<FuncionarioRequest> GetAll();
+    IReadOnlyList<FuncionarioResponse> GetAll();
     
-    FuncionarioRequest? GetById(Guid id);
+    FuncionarioResponse? GetById(Guid id);
     
-    FuncionarioRequest Create(FuncionarioRequest request);
+    FuncionarioResponse Create(FuncionarioRequest request);
     
     bool ExistsById(Guid id);
     

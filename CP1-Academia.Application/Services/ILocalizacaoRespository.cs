@@ -4,11 +4,11 @@ namespace CP1_Academia.API.Application.Services;
 
 public interface ILocalizacaoRespository
 {
-    IReadOnlyList<LocalizacaoRequest> GetAll();
+    IReadOnlyList<LocalizacaoResponse> GetAll();
     
-    LocalizacaoRequest? GetById(Guid id);
+    LocalizacaoResponse? GetById(Guid id);
     
-    LocalizacaoRequest Create(LocalizacaoRequest request);
+    LocalizacaoResponse Create(LocalizacaoRequest request);
     
     bool ExistsById(Guid id);
     

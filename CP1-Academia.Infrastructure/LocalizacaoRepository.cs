@@ -6,21 +6,21 @@ namespace CP1_Academia.Infrastructure;
 
 public sealed class LocalizacaoRepository (AcademiaContext context) : ILocalizacaoRespository
 {
-    public IReadOnlyList<LocalizacaoRequest> GetAll()
+    public IReadOnlyList<LocalizacaoResponse> GetAll()
     {
         return context.Localizacoes.OrderBy(a => a.Estado)
-            .Select(LocalizacaoRequest.FromDomain)
+            .Select(LocalizacaoResponse.FromDomain)
             .ToList();
     }
 
-    public LocalizacaoRequest? GetById(Guid id)
+    public LocalizacaoResponse? GetById(Guid id)
     {
         var localizacao = context.Localizacoes.FirstOrDefault(m=> m.Id == id);
         
-        return localizacao is null ? null : LocalizacaoRequest.FromDomain(localizacao);
+        return localizacao is null ? null : LocalizacaoResponse.FromDomain(localizacao);
     }
 
-    public LocalizacaoRequest Create(LocalizacaoRequest request)
+    public LocalizacaoResponse Create(LocalizacaoRequest request)
     {
         if (request is null)
             throw new ArgumentNullException(nameof(request));
@@ -34,7 +34,7 @@ public sealed class LocalizacaoRepository (AcademiaContext context) : ILocalizac
         context.Localizacoes.Add(localizacao);
         context.SaveChanges();
 
-        return LocalizacaoRequest.FromDomain(localizacao);
+        return LocalizacaoResponse.FromDomain(localizacao);
     }
     
     public bool ExistsById(Guid id)

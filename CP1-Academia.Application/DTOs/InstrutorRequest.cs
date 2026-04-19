@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using CP1_Academia.Domain.Entities;
 
 namespace CP1_Academia.API.Application.DTOs;
 
@@ -28,7 +29,9 @@ public record InstrutorRequest(
     double Salario,
 
     [property: Required(ErrorMessage = "A data de contratação é obrigatória")]
-    [property: Range(typeof(DateTime), "1900-01-01", "2100-12-31", ErrorMessage = "A data de contratação deve estar entre 1900 e 2100")]
+    [property:
+        Range(typeof(DateTime), "1900-01-01", "2100-12-31",
+            ErrorMessage = "A data de contratação deve estar entre 1900 e 2100")]
     DateTime DataDeContratacao,
 
     [property: Required(ErrorMessage = "O campo ativo é obrigatório")]
@@ -39,4 +42,17 @@ public record InstrutorRequest(
 
     [property: Required(ErrorMessage = "O CREF é obrigatório")]
     [property: StringLength(20, MinimumLength = 5, ErrorMessage = "O CREF deve ter entre 5 e 20 caracteres")]
-    string Cref);
+    string Cref)
+{
+    public Instrutor ToDomain() => new(
+        Nome,
+        Cpf,
+        Email,
+        Cargo,
+        GerenteId,
+        Salario,
+        DataDeContratacao,
+        Ativo,
+        UnidadeAcademiaId,
+        Cref);
+}

@@ -6,21 +6,21 @@ namespace CP1_Academia.Infrastructure;
 
 public sealed class GerenteRepository (AcademiaContext context) : IGerenteRepository
 {
-    public IReadOnlyList<GerenteRequest> GetAll()
+    public IReadOnlyList<GerenteResponse> GetAll()
     {
         return context.Gerentes.OrderBy(a => a.Nome)
-            .Select(GerenteRequest.FromDomain)
+            .Select(GerenteResponse.FromDomain)
             .ToList();
     }
 
-    public GerenteRequest? GetById(Guid id)
+    public GerenteResponse? GetById(Guid id)
     {
         var gerente = context.Gerentes.FirstOrDefault(m=> m.Id == id);
         
-        return gerente is null ? null : GerenteRequest.FromDomain(gerente);
+        return gerente is null ? null : GerenteResponse.FromDomain(gerente);
     }
 
-    public GerenteRequest Create(GerenteRequest request)
+    public GerenteResponse Create(GerenteRequest request)
     {
         if (request is null)
             throw new ArgumentNullException(nameof(request));
@@ -34,7 +34,7 @@ public sealed class GerenteRepository (AcademiaContext context) : IGerenteReposi
         context.Gerentes.Add(gerente);
         context.SaveChanges();
 
-        return GerenteRequest.FromDomain(gerente);
+        return GerenteResponse.FromDomain(gerente);
     }
     
     public bool ExistsById(Guid id)

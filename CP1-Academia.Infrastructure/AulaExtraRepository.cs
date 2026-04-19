@@ -6,21 +6,21 @@ namespace CP1_Academia.Infrastructure;
 
 public sealed class AulaExtraRepository (AcademiaContext context) : IAulaExtraRepository
 {
-    public IReadOnlyList<AulaExtraRequest> GetAll()
+    public IReadOnlyList<AulaExtraResponse> GetAll()
     {
         return context.AulaExtras.OrderBy(a => a.Capacidade)
-            .Select(AlunoResponse.FromDomain)
+            .Select(AulaExtraResponse.FromDomain)
             .ToList();
     }
 
-    public AulaExtraRequest? GetById(Guid id)
+    public AulaExtraResponse? GetById(Guid id)
     {
         var aulaExtra = context.AulaExtras.FirstOrDefault(m=> m.Id == id);
         
-        return aulaExtra is null ? null : AulaExtraRequest.FromDomain(aulaExtra);
+        return aulaExtra is null ? null : AulaExtraResponse.FromDomain(aulaExtra);
     }
 
-    public AulaExtraRequest Create(AulaExtraRequest request)
+    public AulaExtraResponse Create(AulaExtraRequest request)
     {
         if (request is null)
             throw new ArgumentNullException(nameof(request));
@@ -34,7 +34,7 @@ public sealed class AulaExtraRepository (AcademiaContext context) : IAulaExtraRe
         context.AulaExtras.Add(aulaExtra);
         context.SaveChanges();
 
-        return AulaExtraRequest.FromDomain(aulaExtra);
+        return AulaExtraResponse.FromDomain(aulaExtra);
     }
     
     public bool ExistsById(Guid id)

@@ -6,21 +6,21 @@ namespace CP1_Academia.Infrastructure;
 
 public sealed class InstrutorRepository (AcademiaContext context) : IInstrutorRepository
 {
-    public IReadOnlyList<InstrutorRequest> GetAll()
+    public IReadOnlyList<InstrutorResponse> GetAll()
     {
         return context.Instrutors.OrderBy(a => a.Nome)
-            .Select(InstrutorRequest.FromDomain)
+            .Select(InstrutorResponse.FromDomain)
             .ToList();
     }
 
-    public InstrutorRequest? GetById(Guid id)
+    public InstrutorResponse? GetById(Guid id)
     {
         var instrutor = context.Instrutors.FirstOrDefault(m=> m.Id == id);
         
-        return instrutor is null ? null : InstrutorRequest.FromDomain(instrutor);
+        return instrutor is null ? null : InstrutorResponse.FromDomain(instrutor);
     }
 
-    public InstrutorRequest Create(InstrutorRequest request)
+    public InstrutorResponse Create(InstrutorRequest request)
     {
         if (request is null)
             throw new ArgumentNullException(nameof(request));
@@ -34,7 +34,7 @@ public sealed class InstrutorRepository (AcademiaContext context) : IInstrutorRe
         context.Instrutors.Add(instrutor);
         context.SaveChanges();
 
-        return InstrutorRequest.FromDomain(instrutor);
+        return InstrutorResponse.FromDomain(instrutor);
     }
     
     public bool ExistsById(Guid id)

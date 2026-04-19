@@ -6,21 +6,21 @@ namespace CP1_Academia.Infrastructure;
 
 public sealed class UnidadeAcademiaRepository (AcademiaContext context) : IUnidadeAcademiaRepository
 {
-    public IReadOnlyList<UnidadeAcademiaRequest> GetAll()
+    public IReadOnlyList<UnidadeAcademiaResponse> GetAll()
     {
         return context.UnidadeAcademias.OrderBy(a => a.Gerente)
-            .Select(UnidadeAcademiaRequest.FromDomain)
+            .Select(UnidadeAcademiaResponse.FromDomain)
             .ToList();
     }
 
-    public UnidadeAcademiaRequest? GetById(Guid id)
+    public UnidadeAcademiaResponse? GetById(Guid id)
     {
         var unidadeAcademia = context.UnidadeAcademias.FirstOrDefault(m=> m.Id == id);
         
-        return unidadeAcademia is null ? null : UnidadeAcademiaRequest.FromDomain(unidadeAcademia);
+        return unidadeAcademia is null ? null : UnidadeAcademiaResponse.FromDomain(unidadeAcademia);
     }
 
-    public UnidadeAcademiaRequest Create(UnidadeAcademiaRequest request)
+    public UnidadeAcademiaResponse Create(UnidadeAcademiaRequest request)
     {
         if (request is null)
             throw new ArgumentNullException(nameof(request));
@@ -34,7 +34,7 @@ public sealed class UnidadeAcademiaRepository (AcademiaContext context) : IUnida
         context.UnidadeAcademias.Add(unidadeAcademia);
         context.SaveChanges();
 
-        return UnidadeAcademiaRequest.FromDomain(unidadeAcademia);
+        return UnidadeAcademiaResponse.FromDomain(unidadeAcademia);
     }
     
     public bool ExistsById(Guid id)

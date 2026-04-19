@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using CP1_Academia.Domain.Entities;
 
 namespace CP1_Academia.API.Application.DTOs;
 
@@ -16,7 +17,8 @@ public record FichaTreinoRequest(
     int Series,
 
     [property: Required(ErrorMessage = "O tipo de exercício é obrigatório")]
-    [property: StringLength(100, MinimumLength = 2, ErrorMessage = "O tipo de exercício deve ter entre 2 e 100 caracteres")]
+    [property:
+        StringLength(100, MinimumLength = 2, ErrorMessage = "O tipo de exercício deve ter entre 2 e 100 caracteres")]
     string TipoExercicio,
 
     [property: Required(ErrorMessage = "O músculo alvo é obrigatório")]
@@ -27,4 +29,14 @@ public record FichaTreinoRequest(
     string? Observacao,
 
     [property: Required(ErrorMessage = "O identificador do aluno é obrigatório")]
-    Guid AlunoId);
+    Guid AlunoId)
+{
+    public FichaTreino ToDomain() => new(
+        Exercicios,
+        Repeticoes,
+        Series,
+        TipoExercicio,
+        MusculoAlvo,
+        Observacao,
+        AlunoId);
+}

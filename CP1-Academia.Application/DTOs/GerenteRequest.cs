@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using CP1_Academia.Domain.Entities;
 
 namespace CP1_Academia.API.Application.DTOs;
 
@@ -28,7 +29,9 @@ public record GerenteRequest(
     double Salario,
 
     [property: Required(ErrorMessage = "A data de contratação é obrigatória")]
-    [property: Range(typeof(DateTime), "1900-01-01", "2100-12-31", ErrorMessage = "A data de contratação deve estar entre 1900 e 2100")]
+    [property:
+        Range(typeof(DateTime), "1900-01-01", "2100-12-31",
+            ErrorMessage = "A data de contratação deve estar entre 1900 e 2100")]
     DateTime DataDeContratacao,
 
     [property: Required(ErrorMessage = "O campo ativo é obrigatório")]
@@ -42,13 +45,34 @@ public record GerenteRequest(
     double Comissao,
 
     [property: Required(ErrorMessage = "O período de liderança é obrigatório")]
-    [property: Range(typeof(DateTime), "1900-01-01", "2100-12-31", ErrorMessage = "O período de liderança deve estar entre 1900 e 2100")]
+    [property:
+        Range(typeof(DateTime), "1900-01-01", "2100-12-31",
+            ErrorMessage = "O período de liderança deve estar entre 1900 e 2100")]
     DateTime PeriodoDeLideranca,
 
     [property: Required(ErrorMessage = "A área de responsabilidade é obrigatória")]
-    [property: StringLength(150, MinimumLength = 2, ErrorMessage = "A área de responsabilidade deve ter entre 2 e 150 caracteres")]
+    [property:
+        StringLength(150, MinimumLength = 2,
+            ErrorMessage = "A área de responsabilidade deve ter entre 2 e 150 caracteres")]
     string AreaDeResponsabilidade,
 
     [property: Required(ErrorMessage = "O nível de liderança é obrigatório")]
-    [property: StringLength(50, MinimumLength = 2, ErrorMessage = "O nível de liderança deve ter entre 2 e 50 caracteres")]
-    string NivelDeLideranca);
+    [property:
+        StringLength(50, MinimumLength = 2, ErrorMessage = "O nível de liderança deve ter entre 2 e 50 caracteres")]
+    string NivelDeLideranca)
+{
+    public Gerente ToDomain() => new(
+        Nome,
+        Cpf,
+        Email,
+        Cargo,
+        GerenteId,
+        Salario,
+        DataDeContratacao,
+        Ativo,
+        UnidadeAcademiaId,
+        Comissao,
+        PeriodoDeLideranca,
+        AreaDeResponsabilidade,
+        NivelDeLideranca);
+}

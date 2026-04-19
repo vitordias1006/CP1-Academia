@@ -4,11 +4,11 @@ namespace CP1_Academia.API.Application.Services;
 
 public interface IAulaExtraRepository
 {
-    IReadOnlyList<AulaExtraRequest> GetAll();
+    IReadOnlyList<AulaExtraResponse> GetAll();
     
-    AulaExtraRequest? GetById(Guid id);
+    AulaExtraResponse? GetById(Guid id);
     
-    AulaExtraRequest Create(AulaExtraRequest request);
+    AulaExtraResponse Create(AulaExtraRequest request);
     
     bool ExistsById(Guid id);
     
