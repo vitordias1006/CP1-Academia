@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
+
 namespace CP1_Academia.API.Application.DTOs;
 
 public record AulaExtraRequest(
