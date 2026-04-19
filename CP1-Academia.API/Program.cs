@@ -17,7 +17,15 @@ public class Program
         
         
         builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
+        builder.Services.AddScoped<IAulaExtraRepository, AulaExtraRepository>();
+        builder.Services.AddScoped<IFichaTreinoRepository, FichaTreinoRepository>();
+        builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
+        builder.Services.AddScoped<IGerenteRepository, GerenteRepository>();
+        builder.Services.AddScoped<IInstrutorRepository, InstrutorRepository>();
+        builder.Services.AddScoped<ILocalizacaoRespository, LocalizacaoRespository>();
         builder.Services.AddScoped<IPlanoRepository, PlanoRepository>();
+        builder.Services.AddScoped<IRedeAcademiaRepository, RedeAcademiaRepository>();
+        builder.Services.AddScoped<IUnidadeAcademiaRepository, UnidadeAcademiaRepository>();
 
         builder.Services.AddControllers();
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
