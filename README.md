@@ -1,287 +1,332 @@
-🏋️ Sistema de Gerenciamento de Academia
-👥 Integrantes
+# 🏋️ Sistema de Gerenciamento de Academia
 
-Vitor Dias dos Santos — RM: 565422
+## 👥 Integrantes
 
-Enrico Delesporte — RM: 565760
+- **Vitor Dias dos Santos** — RM: 565422
+- **Enrico Delesporte** — RM: 565760
+- **Felipe Modesto** — RM: 561810
 
-Felipe Modesto — RM: 561810
+---
 
-📌 Domínio do Projeto
+## 📌 Domínio do Projeto
 
-O domínio escolhido para o projeto foi Academia.
+O domínio escolhido para o projeto foi **Academia**.
 
 O sistema foi modelado para representar a estrutura de uma rede de academias, permitindo o gerenciamento de alunos, planos, fichas de treino, funcionários, unidades e demais elementos necessários para o funcionamento de uma academia moderna.
 
-🧩 Entidades Modeladas
+---
+
+## 🗃️ SGBD Utilizado
+
+**Oracle Database** — via provider `Oracle.EntityFrameworkCore`.
+
+A connection string é configurada no `appsettings.json` sob a chave `AcademiaOracle`. Credenciais reais **não são commitadas** no repositório; utilize User Secrets ou variáveis de ambiente para fornecer a string de conexão em desenvolvimento.
+
+---
+
+## 🏗️ Arquitetura
+
+O projeto segue os princípios de **Clean Architecture**, organizado em quatro camadas:
+
+| Camada | Projeto | Responsabilidade |
+|---|---|---|
+| Domain | `CP1-Academia.Domain` | Entidades e regras de negócio |
+| Application | `CP1-Academia.Application` | DTOs e interfaces de repositório |
+| Infrastructure | `CP1-Academia.Infrastructure` | DbContext, mapeamentos, migrations e implementações de repositório |
+| API | `CP1-Academia.API` / `CP1-Academia` | Controllers, Program.cs e configuração de DI |
+
+---
+
+## 🧩 Entidades Modeladas
 
 O modelo contém as seguintes entidades:
 
-Plano
+- Plano
+- Aluno
+- Ficha de Treino
+- Aula Extra
+- Funcionário
+- Instrutor *(especialização de Funcionário)*
+- Gerente *(especialização de Funcionário)*
+- Unidade de Academia
+- Rede de Academia
+- Localização
 
-Aluno
+---
 
-Ficha de Treino
+## 📊 Modelo Entidade-Relacionamento (MER)
 
-Aula Extra
+O MER apresenta:
 
-Funcionário
+- Entidades do sistema
+- Atributos principais
+- Chaves primárias (PK)
+- Relacionamentos
+- Cardinalidades
+- Opcionalidades
 
-Instrutor
+---
 
-Gerente
+## 📚 Descrição das Entidades
 
-Unidade de Academia
+### Plano
 
-Rede de Academia
+A entidade **Plano** armazena as informações dos planos oferecidos pela academia.
 
-Localização
-
-
-📊 Modelo Entidade-Relacionamento (MER)
-
-
-Ele apresenta:
-
-Entidades do sistema
-
-Atributos principais
-
-Chaves primárias (PK)
-
-Relacionamentos
-
-Cardinalidades
-
-Opcionalidades
-
-📚 Descrição das Entidades
-Plano
-
-A entidade Plano armazena as informações dos planos oferecidos pela academia.
-
-Ela contém dados como:
-
-preço
-
-tipo de plano
-
-data de assinatura
-
-data de renovação
-
-fidelidade
-
-status ativo
+Ela contém dados como: preço, tipo de plano, data de assinatura, data de renovação, fidelidade e status ativo.
 
 Esses planos podem ser associados aos alunos cadastrados.
 
-Aluno
+### Aluno
 
-A entidade Aluno representa os clientes da academia.
+A entidade **Aluno** representa os clientes da academia.
 
-São armazenadas informações como:
-
-nome
-
-CPF
-
-e-mail
-
-telefone
-
-data de matrícula
-
-status de atividade
+São armazenadas informações como: nome, CPF, e-mail, telefone, data de matrícula e status de atividade.
 
 Cada aluno está vinculado a um plano e pode possuir uma ficha de treino específica.
 
-Ficha de Treino
+### Ficha de Treino
 
-A Ficha de Treino contém as informações relacionadas aos exercícios realizados pelos alunos.
+A **Ficha de Treino** contém as informações relacionadas aos exercícios realizados pelos alunos.
 
-Inclui dados como:
+Inclui dados como: exercícios, número de repetições, séries, tipo de exercício, músculo alvo e observações do instrutor.
 
-exercícios
+### Aula Extra
 
-número de repetições
+A entidade **Aula Extra** registra aulas adicionais oferecidas pela academia (ex.: Yoga, Funcional, Spinning).
 
-séries
+Possui informações como: tipo de aula, horário e capacidade máxima de participantes.
 
-tipo de exercício
+### Funcionário
 
-músculo alvo
+A entidade **Funcionário** representa os colaboradores da academia.
 
-observações do instrutor
+São armazenados dados como: nome, CPF, e-mail, cargo, salário, data de contratação e status de atividade.
 
-Essa ficha é associada ao aluno para acompanhar sua rotina de treinamento.
+### Instrutor
 
-Aula Extra
+O **Instrutor** é uma especialização da entidade Funcionário, representando os profissionais responsáveis por orientar os alunos nos treinos. Possui a informação adicional de registro profissional **CREF**.
 
-A entidade Aula Extra registra aulas adicionais oferecidas pela academia.
+### Gerente
 
-Exemplos:
+A entidade **Gerente** também é uma especialização de Funcionário, representando os responsáveis pela gestão da academia. Possui informações adicionais como: comissão, período de liderança, área de responsabilidade e nível de gerência.
 
-Yoga
+### Unidade da Academia
 
-Funcional
+A entidade **Unidade da Academia** representa cada unidade física pertencente à rede. Ela possui: telefone, horário de funcionamento, status da unidade, vínculo com gerente, funcionários e rede de academias.
 
-Spinning
+### Rede de Academia
 
-Ela possui informações como:
+A entidade **Rede de Academia** armazena informações sobre a organização principal que administra as unidades: nome da rede, quantidade de unidades, CNPJ e data de fundação.
 
-tipo de aula
+### Localização
 
-horário
+A entidade **Localização** registra o endereço das unidades: estado, cidade, bairro, CEP, rua e número.
 
-capacidade máxima de participantes
+---
 
-Funcionário
+## 🔗 Relacionamentos do Sistema
 
-A entidade Funcionário representa os colaboradores da academia.
+| Entidades | Cardinalidade |
+|---|---|
+| Plano → Aluno | (1) : (N) |
+| Aluno → Ficha de Treino | (1) : (1) |
+| Funcionário → Instrutor | herança/especialização |
+| Funcionário → Gerente | herança/especialização |
+| Rede de Academia → Unidade | (1) : (N) |
+| Unidade → Localização | (1) : (1) |
+| Unidade → Funcionário | (1) : (N) |
+| Ficha de Treino → Aula Extra | (1) : (N) |
 
-São armazenados dados como:
+---
 
-nome
+## 🗄️ Persistência com EF Core (CP2)
 
-CPF
+### DbContext
 
-e-mail
+O `AcademiaContext` está localizado em `CP1-Academia.Infrastructure/Persistence/` e expõe os seguintes `DbSet`s:
 
-cargo
+- `Alunos`
+- `AulaExtras`
+- `FichaTreinos`
+- `Funcionarios`
+- `Gerentes`
+- `Instrutors`
+- `Localizacoes`
+- `Planos`
+- `RedeAcademias`
+- `UnidadeAcademias`
 
-salário
+### Mapeamento — Fluent API
 
-data de contratação
+Cada entidade possui sua própria classe de configuração (`IEntityTypeConfiguration<T>`) em `CP1-Academia.Infrastructure/Persistence/Configurations/`:
 
-status de atividade
+| Arquivo | Entidade |
+|---|---|
+| `AlunoConfiguration.cs` | Aluno |
+| `AulaExtraConfiguration.cs` | AulaExtra |
+| `FichaTreinoConfiguration.cs` | FichaTreino |
+| `FuncionarioConfiguration.cs` | Funcionario |
+| `GerenteConfiguration.cs` | Gerente |
+| `InstrutorConfiguration.cs` | Instrutor |
+| `LocalizacaoConfiguration.cs` | Localizacao |
+| `PlanoConfiguration.cs` | Plano |
+| `RedeAcademiaConfiguration.cs` | RedeAcademia |
+| `UnidadeAcademiaConfiguration.cs` | UnidadeAcademia |
 
-Instrutor
+As configurações definem explicitamente: nomes de tabelas, PKs, tipos de coluna, `maxLength`, `IsRequired`, relacionamentos com `HasOne`/`WithMany`/`HasForeignKey` e comportamento de deleção (`OnDelete`).
 
-O Instrutor é uma especialização da entidade Funcionário.
+### Migration
 
-Ele representa os profissionais responsáveis por orientar os alunos nos treinos.
+Uma migration inicial foi gerada e cobre o esquema completo:
 
-Possui também informações adicionais como:
+```
+20260418164044_Initial
+```
 
-registro profissional CREF
+Para aplicar ao banco:
 
-Gerente
+```bash
+dotnet ef database update --project CP1-Academia.Infrastructure --startup-project CP1-Academia.API
+```
 
-A entidade Gerente também é uma especialização de Funcionário.
+### Repositórios
 
-Ela representa os responsáveis pela gestão da academia.
+**Interfaces** (camada Application — `CP1-Academia.Application/Services/`):
 
-Possui informações adicionais como:
+- `IAlunoRepository`
+- `IAulaExtraRepository`
+- `IFichaTreinoRepository`
+- `IFuncionarioRepository`
+- `IGerenteRepository`
+- `IInstrutorRepository`
+- `ILocalizacaoRespository`
+- `IPlanoRepository`
+- `IRedeAcademiaRepository`
+- `IUnidadeAcademiaRepository`
 
-comissão
+**Implementações** (camada Infrastructure — `CP1-Academia.Infrastructure/`):
 
-período de liderança
+- `AlunoRepository`
+- `AulaExtraRepository`
+- `FichaTreinoRepository`
+- `FuncionarioRepository`
+- `GerenteRepository`
+- `InstrutorRepository`
+- `LocalizacaoRepository`
+- `PlanoRepository`
+- `RedeAcademiaRepository`
+- `UnidadeAcademiaRepository`
 
-área de responsabilidade
+### Injeção de Dependência
 
-nível de gerência
+Registros realizados em `Program.cs`:
 
-Unidade da Academia
+```csharp
+builder.Services.AddDbContext<AcademiaContext>(options =>
+    options.UseOracle(builder.Configuration.GetConnectionString("AcademiaOracle")));
 
-A entidade Unidade da Academia representa cada unidade física pertencente à rede de academias.
+builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
+builder.Services.AddScoped<IAulaExtraRepository, AulaExtraRepository>();
+// ... demais repositórios
+```
 
-Ela possui dados como:
+---
 
-telefone
+## 🌐 Endpoints da API
 
-horário de funcionamento
+Todos os controllers estão em `CP1-Academia.API/Controllers/` e seguem o padrão `api/[controller]`. Cada entidade expõe:
 
-status da unidade
+| Método | Rota | Descrição |
+|---|---|---|
+| `GET` | `api/{entidade}` | Lista todos os registros |
+| `GET` | `api/{entidade}/{id}` | Busca por ID |
+| `POST` | `api/{entidade}` | Cria novo registro |
+| `DELETE` | `api/{entidade}/{id}` | Remove registro |
 
-Além disso, possui vínculos com:
+A documentação interativa está disponível via **Swagger UI** em `/swagger` quando rodando em ambiente de desenvolvimento.
 
-gerente
+---
 
-funcionários
+## ⚙️ Como Executar
 
-rede de academias
+### 1. Clone o repositório
 
-Rede de Academia
+```bash
+git clone <url-do-repositorio>
+cd CP1-Academia
+```
 
-A entidade Rede de Academia armazena informações sobre a organização principal que administra as unidades.
+### 2. Configure a connection string via User Secrets
 
-Inclui dados como:
+O projeto utiliza **User Secrets** para manter credenciais fora do repositório. O `UserSecretsId` já está configurado no `.csproj` da API (`9c7a04f0-96a0-46b9-97a3-7e388b8953db`).
 
-nome da rede
+Navegue até o projeto da API e inicialize os secrets:
 
-quantidade de unidades
+```bash
+cd CP1-Academia.API
+dotnet user-secrets init
+```
 
-CNPJ
+Em seguida, defina a connection string com seus dados do Oracle:
 
-data de fundação
+```bash
+dotnet user-secrets set "ConnectionStrings:AcademiaOracle" "User Id=<usuario>;Password=<senha>;Data Source=<host>:<porta>/<service_name>"
+```
 
-Localização
+**Exemplo:**
 
-A entidade Localização registra o endereço das unidades da academia.
+```bash
+dotnet user-secrets set "ConnectionStrings:AcademiaOracle" "User Id=rm565422;Password=minhasenha;Data Source=oracle.fiap.com.br:1521/orcl"
+```
 
-Contém informações como:
+Para verificar se o secret foi salvo corretamente:
 
-estado
+```bash
+dotnet user-secrets list
+```
 
-cidade
+> ⚠️ Os User Secrets ficam armazenados localmente na máquina do desenvolvedor e **nunca são commitados** no repositório. O arquivo `appsettings.json` contém apenas um placeholder e pode ser commitado normalmente.
 
-bairro
+### 3. Aplique as migrations
 
-CEP
+De volta à raiz da solução:
 
-rua
+```bash
+dotnet ef database update --project CP1-Academia.Infrastructure --startup-project CP1-Academia.API
+```
 
-número
+### 4. Execute a API
 
-Permitindo identificar a localização física de cada unidade.
+```bash
+dotnet run --project CP1-Academia.API
+```
 
-🔗 Relacionamentos do Sistema
-Plano — Aluno
+### 5. Acesse o Swagger
 
-Um Plano pode estar associado a vários alunos, enquanto cada Aluno possui apenas um plano ativo.
+Abra no navegador: `https://localhost:{porta}/swagger`
 
-Cardinalidade:
-Plano (1) → (N) Alunos
+---
 
-Aluno — Ficha de Treino
+## 🗂️ Estrutura de Pastas (resumo)
 
-Cada Aluno possui uma ficha de treino que registra os exercícios e orientações definidas para ele.
-
-Cardinalidade:
-Aluno (1) → (1) Ficha de Treino
-
-Funcionário — Instrutor / Gerente
-
-Instrutores e Gerentes são especializações da entidade Funcionário.
-
-Ou seja:
-
-Todo Instrutor é um Funcionário
-
-Todo Gerente é um Funcionário
-
-Rede de Academia — Unidade da Academia
-
-Uma Rede de Academia pode possuir várias unidades, enquanto cada Unidade pertence a apenas uma rede.
-
-Cardinalidade:
-Rede (1) → (N) Unidades
-
-Unidade da Academia — Localização
-
-Cada Unidade da Academia possui uma localização específica registrada no sistema.
-
-Cardinalidade:
-Unidade (1) → (1) Localização
-
-Unidade da Academia — Funcionário
-
-Os Funcionários trabalham em uma determinada Unidade da Academia.
-
-Cardinalidade:
-Unidade (1) → (N) Funcionários
-
-Ficha de Treino — Aula Extra
-
-As Fichas de Treino podem estar relacionadas às Aulas Extras disponíveis na academia, permitindo que os alunos participem de atividades adicionais além dos treinos convencionais.
+```
+CP1-Academia/
+├── CP1-Academia.Domain/
+│   ├── Common/BaseEntity.cs
+│   └── Entities/          # Aluno, AulaExtra, FichaTreino, Funcionario, Gerente,
+│                          #   Instrutor, Localizacao, Plano, RedeAcademia, UnidadeAcademia
+├── CP1-Academia.Application/
+│   ├── DTOs/              # Request e Response por entidade
+│   └── Services/          # Interfaces de repositório
+├── CP1-Academia.Infrastructure/
+│   ├── Persistence/
+│   │   ├── AcademiaContext.cs
+│   │   └── Configurations/ # IEntityTypeConfiguration<T> por entidade
+│   ├── Migrations/         # 20260418164044_Initial
+│   └── *Repository.cs      # Implementações dos repositórios
+└── CP1-Academia.API/
+    ├── Controllers/        # Um controller por entidade
+    ├── Program.cs          # DI e configuração
+    └── appsettings.json
+```
