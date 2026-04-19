@@ -274,12 +274,6 @@ Em seguida, defina a connection string com seus dados do Oracle:
 dotnet user-secrets set "ConnectionStrings:AcademiaOracle" "User Id=<usuario>;Password=<senha>;Data Source=<host>:<porta>/<service_name>"
 ```
 
-**Exemplo:**
-
-```bash
-dotnet user-secrets set "ConnectionStrings:AcademiaOracle" "User Id=rm565422;Password=minhasenha;Data Source=oracle.fiap.com.br:1521/orcl"
-```
-
 Para verificar se o secret foi salvo corretamente:
 
 ```bash
