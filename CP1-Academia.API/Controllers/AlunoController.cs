@@ -21,7 +21,6 @@ public class AlunoController : ControllerBase
     
     [HttpGet]
     [ProducesResponseType(typeof(AlunoResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult GetAll()
     {
         var alunos = _alunoRepository.GetAll();
@@ -33,9 +32,8 @@ public class AlunoController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult GetById(Guid id)
     {
-        var aluno = _alunoRepository.GetById(id);
-        if (aluno is null)
-            return NotFound();
+        var aluno = _alunoRepository.GetById(id)
+                    ?? throw new ResourceNotFoundException(nameof(Aluno), id);
 
         return Ok(aluno);
     }

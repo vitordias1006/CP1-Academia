@@ -1,5 +1,7 @@
 ﻿using CP1_Academia.API.Application.DTOs;
 using CP1_Academia.API.Application.Services;
+using CP1_Academia.Domain.Entities;
+using CP1_Academia.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CP1_Academia.API.Controllers;
@@ -16,6 +18,7 @@ public class FichaTreinoController : ControllerBase
     }
     
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult GetAll()
     {
         var fichaTreino = _fichaTreinoRepository.GetAll();
@@ -23,16 +26,20 @@ public class FichaTreinoController : ControllerBase
     }
     
     [HttpGet("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult GetById(Guid id)
     {
-        var fichaTreino = _fichaTreinoRepository.GetById(id);
-        if (fichaTreino is null)
-            return NotFound();
+        var fichaTreino = _fichaTreinoRepository.GetById(id)
+            ?? throw new ResourceNotFoundException(nameof(FichaTreino), id);
 
         return Ok(fichaTreino);
     }
     
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult Create([FromBody] FichaTreinoRequest request)
     {
         try

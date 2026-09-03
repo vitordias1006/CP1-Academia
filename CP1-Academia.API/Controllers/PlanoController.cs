@@ -1,5 +1,7 @@
 using CP1_Academia.API.Application.DTOs;
 using CP1_Academia.API.Application.Services;
+using CP1_Academia.Domain.Entities;
+using CP1_Academia.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CP1_Academia.API.Controllers;
@@ -16,6 +18,7 @@ public class PlanoController : ControllerBase
     }
     
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult GetAll()
     {
         var planos = _planoRepository.GetAll();
@@ -23,16 +26,20 @@ public class PlanoController : ControllerBase
     }
     
     [HttpGet("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult GetById(Guid id)
     {
-        var plano = _planoRepository.GetById(id);
-        if (plano is null)
-            return NotFound();
+        var plano = _planoRepository.GetById(id)
+            ?? throw new ResourceNotFoundException(nameof(Plano),id);
 
         return Ok(plano);
     }
     
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult Create([FromBody] PlanoRequest request)
     {
         try

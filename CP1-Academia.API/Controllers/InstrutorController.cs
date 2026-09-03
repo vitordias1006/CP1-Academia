@@ -1,5 +1,7 @@
 ﻿using CP1_Academia.API.Application.DTOs;
 using CP1_Academia.API.Application.Services;
+using CP1_Academia.Domain.Entities;
+using CP1_Academia.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CP1_Academia.API.Controllers;
@@ -16,6 +18,7 @@ public class InstrutorController : ControllerBase
     }
     
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult GetAll()
     {
         var instrutor = _instrutorRepository.GetAll();
@@ -23,16 +26,20 @@ public class InstrutorController : ControllerBase
     }
     
     [HttpGet("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult GetById(Guid id)
     {
-        var instrutor = _instrutorRepository.GetById(id);
-        if (instrutor is null)
-            return NotFound();
+        var instrutor = _instrutorRepository.GetById(id)
+            ?? throw new ResourceNotFoundException(nameof(Instrutor), id);
 
         return Ok(instrutor);
     }
     
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult Create([FromBody] InstrutorRequest request)
     {
         try
