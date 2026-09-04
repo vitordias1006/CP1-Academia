@@ -1,11 +1,12 @@
 ﻿using CP1_Academia.API.Application.DTOs;
 using CP1_Academia.API.Application.Services;
+using CP1_Academia.Domain.Entities;
 using CP1_Academia.Domain.Exceptions;
 using CP1_Academia.Infrastructure.Persistence;
 
 namespace CP1_Academia.Infrastructure;
 
-public sealed class AlunoRepository (AcademiaContext context) : IAlunoRepository
+public sealed class AlunoRepository(AcademiaContext context, IRepository<Plano> planoRepository) : IAlunoRepository
 {
     public IReadOnlyList<AlunoResponse> GetAll()
     {
@@ -25,8 +26,8 @@ public sealed class AlunoRepository (AcademiaContext context) : IAlunoRepository
         if (request is null)
             throw new ArgumentNullException(nameof(request));
 
-        if (string.IsNullOrWhiteSpace(request.Nome))
-            throw new DomainException("O nome do aluno é obrigatório");
+        if (!planoRepository.ExistsById(request.PlanoId))
+            throw new ResourceNotFoundException(nameof(Plano), request.PlanoId);
 
         var aluno = request.ToDomain();
 

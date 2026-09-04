@@ -1,4 +1,5 @@
 ﻿using CP1_Academia.Domain.Common;
+using CP1_Academia.Domain.Exceptions;
 
 namespace CP1_Academia.Domain.Entities;
 
@@ -23,6 +24,15 @@ public class Aluno : BaseEntity
 
     public Aluno(string nome, string cpf, string email, string telefone, DateTime dataMatricula, bool ativo, Guid planoId)
     {
+        if (string.IsNullOrWhiteSpace(nome))
+            throw new DomainException("O nome do aluno é obrigatório.");
+
+        if (string.IsNullOrWhiteSpace(cpf))
+            throw new DomainException("O CPF do aluno é obrigatório.");
+
+        if (dataMatricula > DateTime.Now)
+            throw new DomainException("A data de matrícula não pode ser no futuro.");
+
         Nome = nome;
         Cpf = cpf;
         Email = email;
