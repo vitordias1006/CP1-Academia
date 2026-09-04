@@ -4,7 +4,7 @@ using CP1_Academia.Infrastructure.Persistence;
 
 namespace CP1_Academia.Infrastructure;
 
-public class PlanoRepository (AcademiaContext context) :  IPlanoRepository
+public class PlanoRepository (AcademiaContext context) : IPlanoRepository
 {
     public IReadOnlyList<PlanoResponse> GetAll()
     {
@@ -15,9 +15,8 @@ public class PlanoRepository (AcademiaContext context) :  IPlanoRepository
 
     public PlanoResponse? GetById(Guid id)
     {
-        var aluno = context.Planos.FirstOrDefault(m=> m.Id == id);
-        
-        return aluno is null ? null : PlanoResponse.FromDomain(aluno);
+        var plano = context.Planos.FirstOrDefault(m => m.Id == id);
+        return plano is null ? null : PlanoResponse.FromDomain(plano);
     }
 
     public PlanoResponse Create(PlanoRequest request)
@@ -32,16 +31,16 @@ public class PlanoRepository (AcademiaContext context) :  IPlanoRepository
 
         return PlanoResponse.FromDomain(plano);
     }
-    
+
     public bool ExistsById(Guid id)
     {
-        return context.Planos.Any(a=> a.Id == id);
+        return context.Planos.Any(a => a.Id == id);
     }
 
     public bool Delete(Guid id)
     {
         var plano = context.Planos.FirstOrDefault(a => a.Id == id);
-        if (context is null)
+        if (plano is null)
             return false;
 
         context.Planos.Remove(plano);

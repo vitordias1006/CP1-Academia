@@ -1,5 +1,6 @@
 ﻿using CP1_Academia.API.Application.DTOs;
 using CP1_Academia.API.Application.Services;
+using CP1_Academia.Domain.Exceptions;
 using CP1_Academia.Infrastructure.Persistence;
 
 namespace CP1_Academia.Infrastructure;
@@ -15,8 +16,7 @@ public sealed class FuncionarioRepository (AcademiaContext context) : IFuncionar
 
     public FuncionarioResponse? GetById(Guid id)
     {
-        var funcionario = context.Funcionarios.FirstOrDefault(m=> m.Id == id);
-        
+        var funcionario = context.Funcionarios.FirstOrDefault(m => m.Id == id);
         return funcionario is null ? null : FuncionarioResponse.FromDomain(funcionario);
     }
 
@@ -26,8 +26,7 @@ public sealed class FuncionarioRepository (AcademiaContext context) : IFuncionar
             throw new ArgumentNullException(nameof(request));
 
         if (string.IsNullOrWhiteSpace(request.Nome))
-            throw new InvalidOperationException("O nome do funcionário é obrigatório");
-        
+            throw new DomainException("O nome do funcionário é obrigatório");
 
         var funcionario = request.ToDomain();
 
@@ -36,16 +35,16 @@ public sealed class FuncionarioRepository (AcademiaContext context) : IFuncionar
 
         return FuncionarioResponse.FromDomain(funcionario);
     }
-    
+
     public bool ExistsById(Guid id)
     {
-        return context.Funcionarios.Any(a=> a.Id == id);
+        return context.Funcionarios.Any(a => a.Id == id);
     }
 
     public bool Delete(Guid id)
     {
         var funcionario = context.Funcionarios.FirstOrDefault(a => a.Id == id);
-        if (context is null)
+        if (funcionario is null)
             return false;
 
         context.Funcionarios.Remove(funcionario);

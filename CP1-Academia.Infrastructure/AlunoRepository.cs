@@ -1,5 +1,6 @@
 ﻿using CP1_Academia.API.Application.DTOs;
 using CP1_Academia.API.Application.Services;
+using CP1_Academia.Domain.Exceptions;
 using CP1_Academia.Infrastructure.Persistence;
 
 namespace CP1_Academia.Infrastructure;
@@ -15,8 +16,7 @@ public sealed class AlunoRepository (AcademiaContext context) : IAlunoRepository
 
     public AlunoResponse? GetById(Guid id)
     {
-        var aluno = context.Alunos.FirstOrDefault(m=> m.Id == id);
-        
+        var aluno = context.Alunos.FirstOrDefault(m => m.Id == id);
         return aluno is null ? null : AlunoResponse.FromDomain(aluno);
     }
 
@@ -26,8 +26,7 @@ public sealed class AlunoRepository (AcademiaContext context) : IAlunoRepository
             throw new ArgumentNullException(nameof(request));
 
         if (string.IsNullOrWhiteSpace(request.Nome))
-            throw new InvalidOperationException("O nome do aluno é obrigatório");
-        
+            throw new DomainException("O nome do aluno é obrigatório");
 
         var aluno = request.ToDomain();
 
@@ -36,16 +35,16 @@ public sealed class AlunoRepository (AcademiaContext context) : IAlunoRepository
 
         return AlunoResponse.FromDomain(aluno);
     }
-    
+
     public bool ExistsById(Guid id)
     {
-        return context.Alunos.Any(a=> a.Id == id);
+        return context.Alunos.Any(a => a.Id == id);
     }
 
     public bool Delete(Guid id)
     {
         var aluno = context.Alunos.FirstOrDefault(a => a.Id == id);
-        if (context is null)
+        if (aluno is null)
             return false;
 
         context.Alunos.Remove(aluno);
