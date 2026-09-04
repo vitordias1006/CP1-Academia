@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CP1_Academia.API.Controllers;
 
+/// <summary>
+/// Gerencia os gerentes das unidades da academia.
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class GerenteConstroller : ControllerBase
@@ -16,17 +19,27 @@ public class GerenteConstroller : ControllerBase
     {
         _gerenteRepository = gerenteRepository;
     }
-    
+
+    /// <summary>
+    /// Lista todos os gerentes cadastrados.
+    /// </summary>
+    /// <response code="200">Lista de gerentes (pode ser vazia).</response>
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IReadOnlyList<GerenteResponse>), StatusCodes.Status200OK)]
     public IActionResult GetAll()
     {
         var gerente = _gerenteRepository.GetAll();
         return Ok(gerente);
     }
-    
+
+    /// <summary>
+    /// Busca um gerente pelo identificador.
+    /// </summary>
+    /// <param name="id">Identificador do gerente.</param>
+    /// <response code="200">Gerente encontrado.</response>
+    /// <response code="404">Gerente não encontrado.</response>
     [HttpGet("{id:guid}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(GerenteResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult GetById(Guid id)
     {
@@ -35,32 +48,36 @@ public class GerenteConstroller : ControllerBase
 
         return Ok(gerente);
     }
-    
+
+    /// <summary>
+    /// Cria um novo gerente.
+    /// </summary>
+    /// <param name="request">Dados do gerente a ser criado.</param>
+    /// <response code="200">Criado com sucesso.</response>
+    /// <response code="400">Dados inválidos.</response>
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(GerenteResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult Create([FromBody] GerenteRequest request)
     {
-        try
-        {
-            var gerente = _gerenteRepository.Create(request);
-            return Ok(gerente);
-        }
-        catch (InvalidOperationException ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        var gerente = _gerenteRepository.Create(request);
+        return Ok(gerente);
     }
-    
+
+    /// <summary>
+    /// Remove um gerente pelo identificador.
+    /// </summary>
+    /// <param name="id">Identificador do gerente.</param>
+    /// <response code="204">Removido com sucesso.</response>
+    /// <response code="404">Gerente não encontrado.</response>
     [HttpDelete("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult Delete(Guid id)
     {
         if (!_gerenteRepository.Delete(id))
-            return NotFound();
+            throw new ResourceNotFoundException(nameof(Gerente), id);
 
         return NoContent();
     }
-    
-    
 }

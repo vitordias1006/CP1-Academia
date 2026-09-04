@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CP1_Academia.API.Controllers;
 
+/// <summary>
+/// Gerencia os instrutores da academia.
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class InstrutorController : ControllerBase
@@ -16,17 +19,27 @@ public class InstrutorController : ControllerBase
     {
         _instrutorRepository = instrutorRepository;
     }
-    
+
+    /// <summary>
+    /// Lista todos os instrutores cadastrados.
+    /// </summary>
+    /// <response code="200">Lista de instrutores (pode ser vazia).</response>
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IReadOnlyList<InstrutorResponse>), StatusCodes.Status200OK)]
     public IActionResult GetAll()
     {
         var instrutor = _instrutorRepository.GetAll();
         return Ok(instrutor);
     }
-    
+
+    /// <summary>
+    /// Busca um instrutor pelo identificador.
+    /// </summary>
+    /// <param name="id">Identificador do instrutor.</param>
+    /// <response code="200">Instrutor encontrado.</response>
+    /// <response code="404">Instrutor não encontrado.</response>
     [HttpGet("{id:guid}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(InstrutorResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult GetById(Guid id)
     {
@@ -35,32 +48,36 @@ public class InstrutorController : ControllerBase
 
         return Ok(instrutor);
     }
-    
+
+    /// <summary>
+    /// Cria um novo instrutor.
+    /// </summary>
+    /// <param name="request">Dados do instrutor a ser criado.</param>
+    /// <response code="200">Criado com sucesso.</response>
+    /// <response code="400">Dados inválidos.</response>
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(InstrutorResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult Create([FromBody] InstrutorRequest request)
     {
-        try
-        {
-            var instrutor = _instrutorRepository.Create(request);
-            return Ok(instrutor);
-        }
-        catch (InvalidOperationException ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        var instrutor = _instrutorRepository.Create(request);
+        return Ok(instrutor);
     }
-    
+
+    /// <summary>
+    /// Remove um instrutor pelo identificador.
+    /// </summary>
+    /// <param name="id">Identificador do instrutor.</param>
+    /// <response code="204">Removido com sucesso.</response>
+    /// <response code="404">Instrutor não encontrado.</response>
     [HttpDelete("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult Delete(Guid id)
     {
         if (!_instrutorRepository.Delete(id))
-            return NotFound();
+            throw new ResourceNotFoundException(nameof(Instrutor), id);
 
         return NoContent();
     }
-    
-    
 }

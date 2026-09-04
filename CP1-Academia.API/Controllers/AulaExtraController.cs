@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CP1_Academia.API.Controllers;
 
+/// <summary>
+/// Gerencia as aulas extras oferecidas pela academia.
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class AulaExtraController : ControllerBase
@@ -16,17 +19,27 @@ public class AulaExtraController : ControllerBase
     {
         _aulaExtraRepository = aulaExtraRepository;
     }
-    
+
+    /// <summary>
+    /// Lista todas as aulas extras cadastradas.
+    /// </summary>
+    /// <response code="200">Lista de aulas extras (pode ser vazia).</response>
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IReadOnlyList<AulaExtraResponse>), StatusCodes.Status200OK)]
     public IActionResult GetAll()
     {
         var aulaExtra = _aulaExtraRepository.GetAll();
         return Ok(aulaExtra);
     }
-    
+
+    /// <summary>
+    /// Busca uma aula extra pelo identificador.
+    /// </summary>
+    /// <param name="id">Identificador da aula extra.</param>
+    /// <response code="200">Aula extra encontrada.</response>
+    /// <response code="404">Aula extra não encontrada.</response>
     [HttpGet("{id:guid}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(AulaExtraResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult GetById(Guid id)
     {
@@ -35,32 +48,36 @@ public class AulaExtraController : ControllerBase
 
         return Ok(aulaExtra);
     }
-    
+
+    /// <summary>
+    /// Cria uma nova aula extra.
+    /// </summary>
+    /// <param name="request">Dados da aula extra a ser criada.</param>
+    /// <response code="200">Criada com sucesso.</response>
+    /// <response code="400">Dados inválidos.</response>
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(AulaExtraResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult Create([FromBody] AulaExtraRequest request)
     {
-        try
-        {
-            var aulaExtra = _aulaExtraRepository.Create(request);
-            return Ok(aulaExtra);
-        }
-        catch (InvalidOperationException ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        var aulaExtra = _aulaExtraRepository.Create(request);
+        return Ok(aulaExtra);
     }
-    
+
+    /// <summary>
+    /// Remove uma aula extra pelo identificador.
+    /// </summary>
+    /// <param name="id">Identificador da aula extra.</param>
+    /// <response code="204">Removida com sucesso.</response>
+    /// <response code="404">Aula extra não encontrada.</response>
     [HttpDelete("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult Delete(Guid id)
     {
         if (!_aulaExtraRepository.Delete(id))
-            return NotFound();
+            throw new ResourceNotFoundException(nameof(AulaExtra), id);
 
         return NoContent();
     }
-    
-    
 }

@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CP1_Academia.API.Controllers;
 
+/// <summary>
+/// Gerencia as fichas de treino dos alunos.
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class FichaTreinoController : ControllerBase
@@ -16,17 +19,27 @@ public class FichaTreinoController : ControllerBase
     {
         _fichaTreinoRepository = fichaTreinoRepository;
     }
-    
+
+    /// <summary>
+    /// Lista todas as fichas de treino cadastradas.
+    /// </summary>
+    /// <response code="200">Lista de fichas (pode ser vazia).</response>
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IReadOnlyList<FichaTreinoResponse>), StatusCodes.Status200OK)]
     public IActionResult GetAll()
     {
         var fichaTreino = _fichaTreinoRepository.GetAll();
         return Ok(fichaTreino);
     }
-    
+
+    /// <summary>
+    /// Busca uma ficha de treino pelo identificador.
+    /// </summary>
+    /// <param name="id">Identificador da ficha de treino.</param>
+    /// <response code="200">Ficha encontrada.</response>
+    /// <response code="404">Ficha não encontrada.</response>
     [HttpGet("{id:guid}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(FichaTreinoResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult GetById(Guid id)
     {
@@ -35,32 +48,36 @@ public class FichaTreinoController : ControllerBase
 
         return Ok(fichaTreino);
     }
-    
+
+    /// <summary>
+    /// Cria uma nova ficha de treino.
+    /// </summary>
+    /// <param name="request">Dados da ficha de treino a ser criada.</param>
+    /// <response code="200">Criada com sucesso.</response>
+    /// <response code="400">Dados inválidos.</response>
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(FichaTreinoResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult Create([FromBody] FichaTreinoRequest request)
     {
-        try
-        {
-            var fichaTreino = _fichaTreinoRepository.Create(request);
-            return Ok(fichaTreino);
-        }
-        catch (InvalidOperationException ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        var fichaTreino = _fichaTreinoRepository.Create(request);
+        return Ok(fichaTreino);
     }
-    
+
+    /// <summary>
+    /// Remove uma ficha de treino pelo identificador.
+    /// </summary>
+    /// <param name="id">Identificador da ficha de treino.</param>
+    /// <response code="204">Removida com sucesso.</response>
+    /// <response code="404">Ficha não encontrada.</response>
     [HttpDelete("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult Delete(Guid id)
     {
         if (!_fichaTreinoRepository.Delete(id))
-            return NotFound();
+            throw new ResourceNotFoundException(nameof(FichaTreino), id);
 
         return NoContent();
     }
-    
-    
-}
+}   
