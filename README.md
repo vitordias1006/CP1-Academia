@@ -182,6 +182,8 @@ Cada entidade possui sua própria classe de configuração (`IEntityTypeConfigur
 
 As configurações definem explicitamente: nomes de tabelas, PKs, tipos de coluna, `maxLength`, `IsRequired`, relacionamentos com `HasOne`/`WithMany`/`HasForeignKey` e comportamento de deleção (`OnDelete`).
 
+Propriedades booleanas (`Ativo`, `Fidelidade`) são mapeadas explicitamente com `HasConversion<int>()`, já que o Oracle não possui tipo `BOOLEAN` nativo em tabelas — o EF Core envia `0`/`1` em vez de um literal booleano, evitando o erro `ORA-06550 / PLS-00382` na geração de comandos SQL.
+
 ### Migration
 
 Uma migration inicial foi gerada e cobre o esquema completo:
@@ -244,6 +246,8 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
   - `FichaTreinoRepository` → `IRepository<Aluno>` (valida `AlunoId`)
   - `FuncionarioRepository` → `IRepository<Gerente>` + `IRepository<UnidadeAcademia>`
   - `UnidadeAcademiaRepository` → `IRepository<RedeAcademia>` + `IRepository<Gerente>` + `IRepository<Localizacao>`
+
+> Nota de implementação: `ExistsById` é implementado com `Count(...) > 0` em vez de `Any(...)`, pois a tradução padrão de `Any()` pelo provider Oracle gerava literais booleanos incompatíveis com o dialeto SQL do Oracle (`ORA-00904`).
 
 ### Injeção de Dependência
 
@@ -340,21 +344,16 @@ mensagem de erro).
 - `Degraded` → **200** (ainda serve tráfego, com aviso)
 - `Unhealthy` → **503**
 
-Exemplo de formato da resposta:
-```json
-{
-  "status": "Healthy",
-  "totalDurationMs": 12.4,
-  "checks": [
-    { "name": "self", "status": "Healthy", "durationMs": 0.1, "description": "API no ar", "error": null },
-    { "name": "oracle-db", "status": "Healthy", "durationMs": 12.1, "description": null, "error": null }
-  ]
-}
-```
-
 Configuração via extensão (`HealthCheckServiceExtensions.AddAcademiaHealthChecks`)
-para não inchar o `Program.cs`. Evidências (Healthy/Unhealthy) em
-[`/docs/health-checks`](./docs/health-checks) — *a preencher com prints/JSON reais*.
+para não inchar o `Program.cs`.
+
+**Evidências reais (Healthy e Unhealthy)** documentadas em
+[`/docs/health-checks`](./docs/health-checks), incluindo:
+- `GET /health` retornando **200 OK** com `self` e `oracle-db` como `Healthy`.
+- `GET /health` retornando **503 Service Unavailable** com `oracle-db` como
+  `Unhealthy` (simulado localmente via connection string inválida) enquanto `self`
+  permanece `Healthy`, confirmando que o relatório agregado reflete corretamente
+  a indisponibilidade da dependência.
 
 ---
 
@@ -369,8 +368,10 @@ A API usa `ILogger<T>` nativo do ASP.NET Core, com **logs estruturados**
 - **GlobalExceptionHandler:** loga toda exceção não tratada em nível `Error`,
   incluindo o mesmo `traceId` retornado na resposta `ProblemDetails`.
 
-Evidência de log de uma requisição bem-sucedida e de uma exceção tratada em
-[`/docs/logs`](./docs/logs) — *a preencher com saída real do console*.
+**Evidência real** de um `POST /api/aluno` bem-sucedido, com o mesmo `TraceId`
+correlacionando a linha de início e a linha de sucesso, documentada em
+[`/docs/logs`](./docs/logs). Evidência do cenário de exceção tratada pelo
+`GlobalExceptionHandler` em processo de coleta.
 
 ---
 
@@ -415,7 +416,8 @@ Na raiz da solução:
 dotnet test
 ```
 
-Evidência da execução em [`/docs/tests`](./docs/tests) — *a preencher com a saída real*.
+**Resultado real da execução: 59/59 testes aprovados (48 Domain + 11 Application), 0 falhas.**
+Evidência completa da saída em [`/docs/tests`](./docs/tests).
 
 ---
 
@@ -469,8 +471,11 @@ dotnet run --project CP1-Academia.API
 
 ### 5. Acesse o Swagger e o Health Check
 
-- Swagger: `https://localhost:{porta}/swagger`
-- Health Check: `https://localhost:{porta}/health`
+- Swagger: `http://localhost:{porta}/swagger`
+- Health Check: `http://localhost:{porta}/health`
+
+> No Windows, prefira testar com `curl` usando `http://` em vez de `https://` para
+> evitar erros de negociação TLS (`schannel`) com o certificado de desenvolvimento.
 
 ### 6. Rode os testes automatizados
 
