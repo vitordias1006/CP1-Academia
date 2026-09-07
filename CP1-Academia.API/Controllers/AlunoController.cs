@@ -15,11 +15,13 @@ public class AlunoController : ControllerBase
 {
     private readonly IAlunoRepository _alunoRepository;
     private readonly IRepository<Aluno> _repository;
+    private readonly ILogger<AlunoController> _logger;
 
-    public AlunoController(IAlunoRepository alunoRepository, IRepository<Aluno> repository)
+    public AlunoController(IAlunoRepository alunoRepository, IRepository<Aluno> repository, ILogger<AlunoController> logger)
     {
         _alunoRepository = alunoRepository;
         _repository = repository;
+        _logger = logger;
     }
 
     /// <summary>
@@ -62,7 +64,17 @@ public class AlunoController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult Create([FromBody] AlunoRequest request)
     {
+        var traceId = HttpContext.TraceIdentifier;
+
+        _logger.LogInformation(
+            "Iniciando criação de aluno. Nome: {Nome}, TraceId: {TraceId}",
+            request.Nome, traceId);
+
         var aluno = _alunoRepository.Create(request);
+
+        _logger.LogInformation(
+            "Aluno criado com sucesso. AlunoId: {AlunoId}, TraceId: {TraceId}",
+            aluno.Id, traceId);
         return Ok(aluno);
     }
 

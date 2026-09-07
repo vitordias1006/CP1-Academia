@@ -38,7 +38,7 @@ public sealed class GerenteRepository (AcademiaContext context) : IGerenteReposi
 
     public bool ExistsById(Guid id)
     {
-        return context.Gerentes.Any(a => a.Id == id);
+        return context.Gerentes.Count(a => a.Id == id) > 0;
     }
 
     public bool Delete(Guid id)

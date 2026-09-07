@@ -20,9 +20,11 @@ public class PlanoConfiguration : IEntityTypeConfiguration<Plano>
         
         builder.Property(p => p.TipoPlano).IsRequired().HasMaxLength(40);
 
-        builder.Property(p => p.Fidelidade);
+        builder.Property(p => p.Fidelidade)
+            .HasConversion<int>();
 
-        builder.Property(p => p.Ativo);
+        builder.Property(p => p.Ativo)
+            .HasConversion<int>();
         
     }
 }

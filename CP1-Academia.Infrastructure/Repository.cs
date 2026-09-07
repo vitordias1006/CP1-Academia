@@ -46,5 +46,5 @@ public sealed class Repository<T> : IRepository<T> where T : BaseEntity
     }
 
     public bool ExistsById(Guid id)
-        => _dbSet.Any(e => e.Id == id);
+        => _dbSet.Count(e => e.Id == id) > 0;
 }

@@ -1,15 +1,16 @@
 ﻿using CP1_Academia.API.Application.DTOs;
 using CP1_Academia.API.Application.Services;
+using CP1_Academia.Domain.Entities;
 using CP1_Academia.Domain.Exceptions;
 using CP1_Academia.Infrastructure.Persistence;
 
 namespace CP1_Academia.Infrastructure;
 
-public sealed class FichaTreinoRepository (AcademiaContext context) : IFichaTreinoRepository
+public sealed class FichaTreinoRepository(AcademiaContext context, IRepository<Aluno> alunoRepository) : IFichaTreinoRepository
 {
     public IReadOnlyList<FichaTreinoResponse> GetAll()
     {
-        return context.FichaTreinos.OrderBy(a => a.Aluno)
+        return context.FichaTreinos.OrderBy(a => a.Exercicios)
             .Select(FichaTreinoResponse.FromDomain)
             .ToList();
     }
@@ -25,8 +26,8 @@ public sealed class FichaTreinoRepository (AcademiaContext context) : IFichaTrei
         if (request is null)
             throw new ArgumentNullException(nameof(request));
 
-        if (string.IsNullOrWhiteSpace(request.Exercicios))
-            throw new DomainException("O nome do exercicio é obrigatório");
+        if (!alunoRepository.ExistsById(request.AlunoId))
+            throw new ResourceNotFoundException(nameof(Aluno), request.AlunoId);
 
         var fichaTreino = request.ToDomain();
 
@@ -36,10 +37,7 @@ public sealed class FichaTreinoRepository (AcademiaContext context) : IFichaTrei
         return FichaTreinoResponse.FromDomain(fichaTreino);
     }
 
-    public bool ExistsById(Guid id)
-    {
-        return context.FichaTreinos.Any(a => a.Id == id);
-    }
+    public bool ExistsById(Guid id) => context.FichaTreinos.Count(a => a.Id == id) > 0;
 
     public bool Delete(Guid id)
     {
@@ -49,7 +47,6 @@ public sealed class FichaTreinoRepository (AcademiaContext context) : IFichaTrei
 
         context.FichaTreinos.Remove(fichaTreino);
         context.SaveChanges();
-
         return true;
     }
 }

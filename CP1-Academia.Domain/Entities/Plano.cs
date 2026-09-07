@@ -1,4 +1,5 @@
 ﻿using CP1_Academia.Domain.Common;
+using CP1_Academia.Domain.Exceptions;
 
 namespace CP1_Academia.Domain.Entities;
 
@@ -20,12 +21,20 @@ public class Plano : BaseEntity
 
     public Plano(double preco, DateTime dataDeAssinatura, DateTime dataDeRenovacao, string tipoPlano, bool fidelidade, bool ativo)
     {
+        if (preco <= 0)
+            throw new DomainException("O preço do plano deve ser maior que zero.");
+
+        if (string.IsNullOrWhiteSpace(tipoPlano))
+            throw new DomainException("O tipo de plano é obrigatório.");
+
+        if (dataDeRenovacao < dataDeAssinatura)
+            throw new DomainException("A data de renovação não pode ser anterior à data de assinatura.");
+
         Preco = preco;
         DataDeAssinatura = dataDeAssinatura;
         DataDeRenovacao = dataDeRenovacao;
         TipoPlano = tipoPlano;
         Fidelidade = fidelidade;
         Ativo = ativo;
-
     }
 }

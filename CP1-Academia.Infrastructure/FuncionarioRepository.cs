@@ -1,11 +1,15 @@
 ﻿using CP1_Academia.API.Application.DTOs;
 using CP1_Academia.API.Application.Services;
+using CP1_Academia.Domain.Entities;
 using CP1_Academia.Domain.Exceptions;
 using CP1_Academia.Infrastructure.Persistence;
 
 namespace CP1_Academia.Infrastructure;
 
-public sealed class FuncionarioRepository (AcademiaContext context) : IFuncionarioRepository
+public sealed class FuncionarioRepository(
+    AcademiaContext context,
+    IRepository<Gerente> gerenteRepository,
+    IRepository<UnidadeAcademia> unidadeAcademiaRepository) : IFuncionarioRepository
 {
     public IReadOnlyList<FuncionarioResponse> GetAll()
     {
@@ -25,8 +29,11 @@ public sealed class FuncionarioRepository (AcademiaContext context) : IFuncionar
         if (request is null)
             throw new ArgumentNullException(nameof(request));
 
-        if (string.IsNullOrWhiteSpace(request.Nome))
-            throw new DomainException("O nome do funcionário é obrigatório");
+        if (!gerenteRepository.ExistsById(request.GerenteId))
+            throw new ResourceNotFoundException(nameof(Gerente), request.GerenteId);
+
+        if (!unidadeAcademiaRepository.ExistsById(request.UnidadeAcademiaId))
+            throw new ResourceNotFoundException(nameof(UnidadeAcademia), request.UnidadeAcademiaId);
 
         var funcionario = request.ToDomain();
 
@@ -36,10 +43,7 @@ public sealed class FuncionarioRepository (AcademiaContext context) : IFuncionar
         return FuncionarioResponse.FromDomain(funcionario);
     }
 
-    public bool ExistsById(Guid id)
-    {
-        return context.Funcionarios.Any(a => a.Id == id);
-    }
+    public bool ExistsById(Guid id) => context.Funcionarios.Count(a => a.Id == id) > 0;
 
     public bool Delete(Guid id)
     {
@@ -49,7 +53,6 @@ public sealed class FuncionarioRepository (AcademiaContext context) : IFuncionar
 
         context.Funcionarios.Remove(funcionario);
         context.SaveChanges();
-
         return true;
     }
 }

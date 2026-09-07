@@ -23,7 +23,8 @@ public class AlunoConfiguration : IEntityTypeConfiguration<Aluno>
         
         builder.Property(c => c.DataMatricula).IsRequired();
         
-        builder.Property(c => c.Ativo).IsRequired();
+        builder.Property(c => c.Ativo)
+            .HasConversion<int>();
         
         builder.HasOne(c => c.Plano)
             .WithMany(p => p.Alunos)

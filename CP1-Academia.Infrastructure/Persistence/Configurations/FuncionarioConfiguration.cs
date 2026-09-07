@@ -24,6 +24,7 @@ public class FuncionarioConfiguration : IEntityTypeConfiguration<Funcionario>
         
         builder.Property(f => f.DataDeContratacao);
         
-        builder.Property(f => f.Ativo);
+        builder.Property(f => f.Ativo)
+            .HasConversion<int>();
     }
 }

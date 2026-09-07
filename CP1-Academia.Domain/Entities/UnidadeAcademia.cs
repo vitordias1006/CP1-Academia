@@ -1,4 +1,5 @@
 ﻿using CP1_Academia.Domain.Common;
+using CP1_Academia.Domain.Exceptions;
 
 namespace CP1_Academia.Domain.Entities;
 
@@ -23,6 +24,9 @@ public class UnidadeAcademia : BaseEntity
 
     public UnidadeAcademia(string telefone, bool ativo, DateTime horarioFuncionamento, Guid redeAcademiaId, Guid gerenteId, Guid localizacaoId)
     {
+        if (string.IsNullOrWhiteSpace(telefone))
+            throw new DomainException("O telefone da unidade é obrigatório.");
+
         Telefone = telefone;
         Ativo = ativo;
         HorarioFuncionamento = horarioFuncionamento;

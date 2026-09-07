@@ -1,15 +1,20 @@
 ﻿using CP1_Academia.API.Application.DTOs;
 using CP1_Academia.API.Application.Services;
+using CP1_Academia.Domain.Entities;
 using CP1_Academia.Domain.Exceptions;
 using CP1_Academia.Infrastructure.Persistence;
 
 namespace CP1_Academia.Infrastructure;
 
-public sealed class UnidadeAcademiaRepository (AcademiaContext context) : IUnidadeAcademiaRepository
+public sealed class UnidadeAcademiaRepository(
+    AcademiaContext context,
+    IRepository<RedeAcademia> redeAcademiaRepository,
+    IRepository<Gerente> gerenteRepository,
+    IRepository<Localizacao> localizacaoRepository) : IUnidadeAcademiaRepository
 {
     public IReadOnlyList<UnidadeAcademiaResponse> GetAll()
     {
-        return context.UnidadeAcademias.OrderBy(a => a.Gerente)
+        return context.UnidadeAcademias.OrderBy(a => a.Telefone)
             .Select(UnidadeAcademiaResponse.FromDomain)
             .ToList();
     }
@@ -25,8 +30,14 @@ public sealed class UnidadeAcademiaRepository (AcademiaContext context) : IUnida
         if (request is null)
             throw new ArgumentNullException(nameof(request));
 
-        if (string.IsNullOrWhiteSpace(request.Telefone))
-            throw new DomainException("O telefone da unidade da academia é obrigatório");
+        if (!redeAcademiaRepository.ExistsById(request.RedeAcademiaId))
+            throw new ResourceNotFoundException(nameof(RedeAcademia), request.RedeAcademiaId);
+
+        if (!gerenteRepository.ExistsById(request.GerenteId))
+            throw new ResourceNotFoundException(nameof(Gerente), request.GerenteId);
+
+        if (!localizacaoRepository.ExistsById(request.LocalizacaoId))
+            throw new ResourceNotFoundException(nameof(Localizacao), request.LocalizacaoId);
 
         var unidadeAcademia = request.ToDomain();
 
@@ -36,10 +47,7 @@ public sealed class UnidadeAcademiaRepository (AcademiaContext context) : IUnida
         return UnidadeAcademiaResponse.FromDomain(unidadeAcademia);
     }
 
-    public bool ExistsById(Guid id)
-    {
-        return context.UnidadeAcademias.Any(a => a.Id == id);
-    }
+    public bool ExistsById(Guid id) => context.UnidadeAcademias.Count(a => a.Id == id) > 0;
 
     public bool Delete(Guid id)
     {
@@ -49,7 +57,6 @@ public sealed class UnidadeAcademiaRepository (AcademiaContext context) : IUnida
 
         context.UnidadeAcademias.Remove(unidadeAcademia);
         context.SaveChanges();
-
         return true;
     }
 }

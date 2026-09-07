@@ -13,7 +13,8 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-        <PackageReference Include="Oracle.EntityFrameworkCore" Version="8.21.121" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.0" />
+        <PackageReference Include="Oracle.EntityFrameworkCore" Version="10.23.26000" />
     </ItemGroup>
 
     <ItemGroup>

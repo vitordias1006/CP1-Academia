@@ -34,7 +34,7 @@ public class PlanoRepository (AcademiaContext context) : IPlanoRepository
 
     public bool ExistsById(Guid id)
     {
-        return context.Planos.Any(a => a.Id == id);
+        return context.Planos.Count(a => a.Id == id) > 0;
     }
 
     public bool Delete(Guid id)

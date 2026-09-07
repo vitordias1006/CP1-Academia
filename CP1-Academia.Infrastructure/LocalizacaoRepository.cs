@@ -38,7 +38,7 @@ public sealed class LocalizacaoRepository (AcademiaContext context) : ILocalizac
 
     public bool ExistsById(Guid id)
     {
-        return context.Localizacoes.Any(a => a.Id == id);
+        return context.Localizacoes.Count(a => a.Id == id) > 0;
     }
 
     public bool Delete(Guid id)

@@ -39,7 +39,7 @@ public sealed class AlunoRepository(AcademiaContext context, IRepository<Plano> 
 
     public bool ExistsById(Guid id)
     {
-        return context.Alunos.Any(a => a.Id == id);
+        return context.Alunos.Count(a => a.Id == id) > 0;
     }
 
     public bool Delete(Guid id)

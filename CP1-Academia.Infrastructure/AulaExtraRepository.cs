@@ -1,11 +1,12 @@
 ﻿using CP1_Academia.API.Application.DTOs;
 using CP1_Academia.API.Application.Services;
+using CP1_Academia.Domain.Entities;
 using CP1_Academia.Domain.Exceptions;
 using CP1_Academia.Infrastructure.Persistence;
 
 namespace CP1_Academia.Infrastructure;
 
-public sealed class AulaExtraRepository (AcademiaContext context) : IAulaExtraRepository
+public sealed class AulaExtraRepository(AcademiaContext context, IRepository<FichaTreino> fichaTreinoRepository) : IAulaExtraRepository
 {
     public IReadOnlyList<AulaExtraResponse> GetAll()
     {
@@ -25,8 +26,8 @@ public sealed class AulaExtraRepository (AcademiaContext context) : IAulaExtraRe
         if (request is null)
             throw new ArgumentNullException(nameof(request));
 
-        if (string.IsNullOrWhiteSpace(request.TipoDeAula))
-            throw new DomainException("O Tipo de aula é obrigatório");
+        if (!fichaTreinoRepository.ExistsById(request.FichaTreinoId))
+            throw new ResourceNotFoundException(nameof(FichaTreino), request.FichaTreinoId);
 
         var aulaExtra = request.ToDomain();
 
@@ -36,10 +37,7 @@ public sealed class AulaExtraRepository (AcademiaContext context) : IAulaExtraRe
         return AulaExtraResponse.FromDomain(aulaExtra);
     }
 
-    public bool ExistsById(Guid id)
-    {
-        return context.AulaExtras.Any(a => a.Id == id);
-    }
+    public bool ExistsById(Guid id) => context.AulaExtras.Count(a => a.Id == id) > 0;
 
     public bool Delete(Guid id)
     {
@@ -49,7 +47,6 @@ public sealed class AulaExtraRepository (AcademiaContext context) : IAulaExtraRe
 
         context.AulaExtras.Remove(aulaExtra);
         context.SaveChanges();
-
         return true;
     }
 }

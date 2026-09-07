@@ -15,7 +15,8 @@ public class UnidadeAcademiaConfiguration : IEntityTypeConfiguration<UnidadeAcad
 
         builder.Property(u => u.Telefone);
         
-        builder.Property(u => u.Ativo);
+        builder.Property(u => u.Ativo)
+            .HasConversion<int>();
         
         builder.Property(u => u.HorarioFuncionamento);
         

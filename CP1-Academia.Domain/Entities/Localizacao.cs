@@ -1,4 +1,5 @@
 ﻿using CP1_Academia.Domain.Common;
+using CP1_Academia.Domain.Exceptions;
 
 namespace CP1_Academia.Domain.Entities;
 
@@ -21,6 +22,12 @@ public class Localizacao : BaseEntity
 
     public Localizacao(string estado, string cidade, string bairro, string cep, string rua, int numero, Guid unidadeAcademiaId)
     {
+        if (string.IsNullOrWhiteSpace(estado))
+            throw new DomainException("O estado é obrigatório.");
+
+        if (string.IsNullOrWhiteSpace(cep))
+            throw new DomainException("O CEP é obrigatório.");
+
         Estado = estado;
         Cidade = cidade;
         Bairro = bairro;

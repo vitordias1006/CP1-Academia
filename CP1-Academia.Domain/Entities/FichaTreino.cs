@@ -1,4 +1,5 @@
 ﻿using CP1_Academia.Domain.Common;
+using CP1_Academia.Domain.Exceptions;
 
 namespace CP1_Academia.Domain.Entities;
 
@@ -23,6 +24,15 @@ public class FichaTreino : BaseEntity
     
     public FichaTreino(string exercicios, int repeticoes, int series, string tipoExercicio, string musculoAlvo, string observacao, Guid alunoId)
     {
+        if (string.IsNullOrWhiteSpace(exercicios))
+            throw new DomainException("O nome do exercício é obrigatório.");
+
+        if (repeticoes <= 0)
+            throw new DomainException("O número de repetições deve ser maior que zero.");
+
+        if (series <= 0)
+            throw new DomainException("O número de séries deve ser maior que zero.");
+
         Exercicios = exercicios;
         Repeticoes = repeticoes;
         Series = series;

@@ -38,7 +38,7 @@ public sealed class InstrutorRepository (AcademiaContext context) : IInstrutorRe
 
     public bool ExistsById(Guid id)
     {
-        return context.Instrutors.Any(a => a.Id == id);
+        return context.Instrutors.Count(a => a.Id == id) > 0;
     }
 
     public bool Delete(Guid id)

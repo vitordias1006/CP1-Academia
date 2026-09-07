@@ -38,7 +38,7 @@ public sealed class RedeAcademiaRepository (AcademiaContext context) : IRedeAcad
 
     public bool ExistsById(Guid id)
     {
-        return context.RedeAcademias.Any(a => a.Id == id);
+        return context.RedeAcademias.Count(a => a.Id == id) > 0;
     }
 
     public bool Delete(Guid id)
