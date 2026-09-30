@@ -1,10 +1,15 @@
+using Asp.Versioning;                                    // CP5
+using Asp.Versioning.ApiExplorer;                        // CP5
 using CP1_Academia.API.Application.Services;
 using CP1_Academia.API.Exceptions;
 using CP1_Academia.API.HealthChecks;
-using CP1_Academia.Infrastructure.Persistence;
+using CP1_Academia.API.RateLimiting;                     // CP5
+using CP1_Academia.API.Swagger;                          // CP5
 using CP1_Academia.Infrastructure;
+using CP1_Academia.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi;
+using Microsoft.Extensions.Options;                      // CP5
+using Swashbuckle.AspNetCore.SwaggerGen;                 // CP5
 using System.Reflection;
 
 namespace CP1_Academia.API;
@@ -40,16 +45,33 @@ public class Program
 
         builder.Services.AddControllers();
 
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen(options =>
-        {
-            options.SwaggerDoc("v1", new OpenApiInfo
+        // ===================== — Versionamento =====================
+        builder.Services
+            .AddApiVersioning(options =>
             {
-                Title = "CP1-Academia API",
-                Version = "v1",
-                Description = "API REST para gestão de uma rede de academias."
+                options.DefaultApiVersion = new ApiVersion(2, 0);
+                options.AssumeDefaultVersionWhenUnspecified = true;   // sem versão => 2.0
+                options.ReportApiVersions = true;                     // api-supported-versions / api-deprecated-versions
+                options.ApiVersionReader = ApiVersionReader.Combine(
+                    new QueryStringApiVersionReader("api-version"),   // ?api-version=1.0
+                    new HeaderApiVersionReader("X-Api-Version"),      // X-Api-Version: 1.0
+                    new UrlSegmentApiVersionReader());                // /api/v1/Aluno  (recomendado)
+            })
+            .AddMvc()
+            .AddApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'VVVV";                  // v1.0, v2.0
+                options.SubstituteApiVersionInUrl = true;
             });
 
+        // ===================== — Rate limit =====================
+        builder.Services.AddAcademiaRateLimiting();
+
+        // ===================== Swagger (um documento por versão) =====================
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>(); 
+        builder.Services.AddSwaggerGen(options =>
+        {
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             if (File.Exists(xmlPath))
@@ -65,17 +87,30 @@ public class Program
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(options =>                               
+            {
+                var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+                foreach (var d in provider.ApiVersionDescriptions.OrderByDescending(d => d.ApiVersion))
+                {
+                    options.SwaggerEndpoint(
+                        $"/swagger/{d.GroupName}/swagger.json",
+                        d.IsDeprecated ? $"{d.GroupName} (DEPRECADA)" : d.GroupName);
+                }
+            });
         }
 
         app.UseHttpsRedirection();
+
+        app.UseRouting();                                              
+
+        app.UseRateLimiter();                                          
 
         app.UseAuthorization();
 
         app.MapHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
         {
             ResponseWriter = HealthCheckWriter.WriteResponse
-        });
+        }).DisableRateLimiting();                                      
 
         app.MapControllers();
 

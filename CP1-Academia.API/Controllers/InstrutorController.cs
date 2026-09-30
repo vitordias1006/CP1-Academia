@@ -1,4 +1,5 @@
-﻿using CP1_Academia.API.Application.DTOs;
+﻿using Asp.Versioning;
+using CP1_Academia.API.Application.DTOs;
 using CP1_Academia.API.Application.Services;
 using CP1_Academia.Domain.Entities;
 using CP1_Academia.Domain.Exceptions;
@@ -11,6 +12,7 @@ namespace CP1_Academia.API.Controllers;
 /// </summary>
 [Route("api/[controller]")]
 [ApiController]
+[ApiVersionNeutral]
 public class InstrutorController : ControllerBase
 {
     private readonly IInstrutorRepository _instrutorRepository;

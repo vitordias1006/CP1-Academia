@@ -6,6 +6,8 @@ public interface IAlunoRepository
 {
     IReadOnlyList<AlunoResponse> GetAll();
     
+    PagedResult<AlunoResponse> GetPaged(PageRequest pageRequest);
+    
     AlunoResponse? GetById(Guid id);
     
     AlunoResponse Create(AlunoRequest request);
