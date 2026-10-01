@@ -13,11 +13,11 @@ namespace CP1_Academia.API.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 [ApiVersionNeutral]
-public class GerenteConstroller : ControllerBase
+public class GerenteController : ControllerBase
 {
     private readonly IGerenteRepository _gerenteRepository;
 
-    public GerenteConstroller(IGerenteRepository gerenteRepository)
+    public GerenteController(IGerenteRepository gerenteRepository)
     {
         _gerenteRepository = gerenteRepository;
     }

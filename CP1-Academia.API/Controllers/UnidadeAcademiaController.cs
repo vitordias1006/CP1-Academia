@@ -13,11 +13,11 @@ namespace CP1_Academia.API.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 [ApiVersionNeutral]
-public class UnidadeAcademiaConstroller : ControllerBase
+public class UnidadeAcademiaController : ControllerBase
 {
     private readonly IUnidadeAcademiaRepository _unidadeAcademiaRepository;
 
-    public UnidadeAcademiaConstroller(IUnidadeAcademiaRepository unidadeAcademiaRepository)
+    public UnidadeAcademiaController(IUnidadeAcademiaRepository unidadeAcademiaRepository)
     {
         _unidadeAcademiaRepository = unidadeAcademiaRepository;
     }

@@ -39,7 +39,7 @@ public class PlanoController : ControllerBase
     /// </summary>
     /// <param name="id">Identificador do plano.</param>
     /// <response code="200">Plano encontrado.</response>
-    /// <response code="404">Plano nÃ£o encontrado.</response>
+    /// <response code="404">Plano não encontrado.</response>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(PlanoResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -56,7 +56,7 @@ public class PlanoController : ControllerBase
     /// </summary>
     /// <param name="request">Dados do plano a ser criado.</param>
     /// <response code="200">Criado com sucesso.</response>
-    /// <response code="400">Dados invÃ¡lidos.</response>
+    /// <response code="400">Dados inválidos.</response>
     [HttpPost]
     [ProducesResponseType(typeof(PlanoResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -71,7 +71,7 @@ public class PlanoController : ControllerBase
     /// </summary>
     /// <param name="id">Identificador do plano.</param>
     /// <response code="204">Removido com sucesso.</response>
-    /// <response code="404">Plano nÃ£o encontrado.</response>
+    /// <response code="404">Plano não encontrado.</response>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

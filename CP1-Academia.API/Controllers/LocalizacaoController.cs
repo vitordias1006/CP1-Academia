@@ -13,11 +13,11 @@ namespace CP1_Academia.API.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 [ApiVersionNeutral]
-public class LocalizacaoConstroller : ControllerBase
+public class LocalizacaoController : ControllerBase
 {
     private readonly ILocalizacaoRespository _localizacaoRespository;
 
-    public LocalizacaoConstroller(ILocalizacaoRespository localizacaoRespository)
+    public LocalizacaoController(ILocalizacaoRespository localizacaoRespository)
     {
         _localizacaoRespository = localizacaoRespository;
     }
