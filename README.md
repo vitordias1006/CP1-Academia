@@ -1,5 +1,7 @@
 # 🏋️ Sistema de Gerenciamento de Academia
 
+> Evolução do checkpoint CP4 com versionamento de API, paginação e rate limit (CP5).
+
 ## 👥 Integrantes
 
 - **Vitor Dias dos Santos** — RM: 565422
@@ -294,6 +296,121 @@ A documentação interativa está disponível via **Swagger UI** em `/swagger` q
 
 ---
 
+## 🔀 Versionamento de API (CP5)
+
+Recurso escolhido para versionamento: **Aluno** — é o que já tinha `GET` de listagem desde o CP3 e o que mais cresce no domínio.
+
+| Versão | Status | `GET` de listagem |
+|---|---|---|
+| **1.0** | ⚠️ Deprecada | Array simples (contrato antigo do CP3), **sem paginação** |
+| **2.0** | Atual (padrão quando a versão não é informada) | Envelope paginado (ver seção [Paginação](#-paginação-cp5)) |
+
+As duas versões chamam o **mesmo** `IAlunoRepository` — não há regra de negócio duplicada por versão. Os demais 9 controllers (`AulaExtra`, `FichaTreino`, `Funcionario`, `Gerente`, `Instrutor`, `Localizacao`, `Plano`, `RedeAcademia`, `UnidadeAcademia`) são marcados com `[ApiVersionNeutral]`: continuam respondendo normalmente com qualquer versão informada (ou sem nenhuma), e aparecem nos dois grupos do Swagger. `GetById`, `POST` e `DELETE` do Aluno também não têm versão fixa, então funcionam tanto na 2.0 (padrão) quanto informando `api-version=1.0` explicitamente.
+
+### Como o cliente informa a versão
+
+| Forma | Exemplo |
+|---|---|
+| Query string | `GET /api/Aluno?api-version=1.0` |
+| Header | `GET /api/Aluno` + `X-Api-Version: 1.0` |
+| Segmento de URL | `GET /api/v1/Aluno` / `GET /api/v2/Aluno` |
+| Omitida | `GET /api/Aluno` → cai na **2.0** |
+
+Todas as respostas do recurso Aluno trazem os headers `api-supported-versions` e `api-deprecated-versions` (`ReportApiVersions = true`), confirmando quais versões existem e quais estão deprecadas.
+
+### URLs do recurso (ambiente local)
+
+| Recurso | URL |
+|---|---|
+| Swagger | `http://localhost:5012/swagger` |
+| Health check | `http://localhost:5012/health` |
+| Listagem v1 (lista antiga) | `http://localhost:5012/api/Aluno?api-version=1.0` |
+| Listagem v2 (envelope paginado) | `http://localhost:5012/api/v2/Aluno` (ou `http://localhost:5012/api/Aluno`, sem versão) |
+
+Exemplo real de resposta da v1 (array simples):
+```json
+[
+  {"id":"f3ea8df3-0577-4c2a-be63-d14b60c55603","nome":"Artur","cpf":"00011122233","email":"artur@gmail.com","telefone":"11999991111","dataMatricula":"2026-09-07T11:56:13.501","ativo":true,"planoId":"8337ce30-8685-431c-8fd3-6e9e9971b6c3"},
+  {"id":"29b849a4-46ad-4570-b8d7-9c3926e26700","nome":"Italo","cpf":"11122233344","email":"italo@gmail.com","telefone":"11999881111","dataMatricula":"2026-09-07T10:22:13.501","ativo":true,"planoId":"8337ce30-8685-431c-8fd3-6e9e9971b6c3"}
+]
+```
+
+Swagger em Development lista dois grupos no seletor de versão: **v2.0** e **v1.0 (DEPRECADA)**, com a descrição do grupo v1.0 explicitando a depreciação e o endpoint `GET /api/Aluno` daquele grupo marcado como obsoleto.
+
+---
+
+## 📄 Paginação (CP5)
+
+Somente a listagem **v2** do Aluno é paginada — a v1 preserva o contrato antigo (array simples), evitando um breaking change silencioso.
+
+| Parâmetro | Padrão | Regra |
+|---|---|---|
+| `page` | `1` | inteiro ≥ 1 |
+| `pageSize` | `20` | inteiro entre **1 e 100** (teto) |
+
+- `page < 1` ou `pageSize` fora de 1–100 → **400** (`application/problem+json`, reaproveitando o `GlobalExceptionHandler` do CP3 — a validação lança `ArgumentException` em `PageRequest.Create`).
+- Página além do total de registros → **200** com `items: []` (não é erro).
+- O corte é feito **no banco**: `AlunoRepository.GetPaged` executa `Count` + `OrderBy(Nome).ThenBy(Id)` + `Skip` + `Take` diretamente no `IQueryable`, materializando (`ToList`) só os registros da página.
+
+### Corpo da resposta 200 (v2)
+
+```json
+{
+  "page": 1,
+  "pageSize": 20,
+  "totalItems": 4,
+  "totalPages": 1,
+  "items": [ /* ... */ ],
+  "hasPrevious": false,
+  "hasNext": false
+}
+```
+
+### Validações reais executadas
+
+| Caso | Requisição | Resultado |
+|---|---|---|
+| `page` inválido | `GET /api/v2/Aluno?page=0` | `400` — *"O parâmetro 'page' deve ser um inteiro maior ou igual a 1."* |
+| `pageSize` inválido | `GET /api/v2/Aluno?pageSize=9999` | `400` — *"O parâmetro 'pageSize' deve estar entre 1 e 100."* |
+| Página além do total | `GET /api/v2/Aluno?page=999&pageSize=20` | `200` com `items: []`, `totalItems: 4`, `totalPages: 1` |
+| Paginação normal | `GET /api/v2/Aluno?page=1&pageSize=2` e `page=2&pageSize=2` | Itens distintos nas duas páginas, sem sobreposição |
+
+Evidências completas (headers e corpo) em [`/docs`](./docs).
+
+---
+
+## 🚦 Rate Limit (CP5)
+
+| Item | Valor |
+|---|---|
+| Endpoint limitado | `POST /api/Aluno` |
+| Política | **Fixed window**, nativa do ASP.NET Core (`Microsoft.AspNetCore.RateLimiting`) |
+| Limite / janela | **10 requisições por 1 minuto**, particionado por IP do cliente |
+| Ao estourar | **429 Too Many Requests** + header **`Retry-After`** (segundos) + corpo `application/problem+json` |
+| `GET /health` | **Fora do teto** (`.DisableRateLimiting()`) — continua respondendo normalmente mesmo com o `POST` limitado |
+
+Exemplo real de resposta ao estourar o limite:
+```http
+HTTP/1.1 429 Too Many Requests
+Content-Type: application/problem+json
+Retry-After: 60
+
+{
+  "type": "https://httpstatuses.com/429",
+  "title": "Muitas requisições",
+  "status": 429,
+  "detail": "Limite de 10 requisições por minuto excedido. Tente novamente em 60 segundo(s).",
+  "traceId": "0HNOVLQ5ASFSM:00000001",
+  "retryAfterSeconds": 60
+}
+```
+
+Logo em seguida, `GET /health` confirmado em **200 Healthy** (`self` e `oracle-db` saudáveis), provando que o health check não divide o mesmo teto do endpoint de escrita.
+
+Evidências completas em [`/docs`](./docs).
+
+---
+
 ## ⚠️ Tratamento Global de Exceções (CP3)
 
 Todas as exceções não tratadas pelos controllers são interceptadas pelo
@@ -375,7 +492,7 @@ correlacionando a linha de início e a linha de sucesso, documentada em
 
 ---
 
-## 🧪 Testes Automatizados — xUnit (CP4)
+## 🧪 Testes Automatizados — xUnit (CP4 + CP5)
 
 A solução contém dois projetos de teste, ambos incluídos na `.sln`:
 
@@ -409,6 +526,12 @@ A solução contém dois projetos de teste, ambos incluídos na `.sln`:
 | `FuncionarioRepositoryTests` | `FuncionarioRepository` | `IRepository<Gerente>` + `IRepository<UnidadeAcademia>` | Testa cada dependência ausente isoladamente, e o caminho feliz com ambas presentes |
 | `UnidadeAcademiaRepositoryTests` | `UnidadeAcademiaRepository` | `IRepository<RedeAcademia>` + `IRepository<Gerente>` + `IRepository<Localizacao>` | Idem, para as três dependências |
 
+### Cobertura — Paginação (CP5, em `Application.Tests`)
+
+| Classe de teste | Cobertura |
+|---|---|
+| `PaginacaoTests` | `[Theory]`/`[InlineData]` para `page`/`pageSize` inválidos (lança `ArgumentException`); `[Fact]` para valores válidos e para os padrões (`page=1`, `pageSize=20`); `[Fact]` para `GetPaged` comprovando que página 1 e página 2 não se sobrepõem e que `totalPages` fecha com `totalItems`; `[Fact]` para página além do total retornando `items` vazio sem erro. Roda com EF Core InMemory, sem subir API nem banco Oracle. |
+
 ### Executar os testes
 
 Na raiz da solução:
@@ -416,7 +539,7 @@ Na raiz da solução:
 dotnet test
 ```
 
-**Resultado real da execução: 59/59 testes aprovados (48 Domain + 11 Application), 0 falhas.**
+**Resultado real da execução: 72/72 testes aprovados, 0 falhas.**
 Evidência completa da saída em [`/docs/tests`](./docs/tests).
 
 ---
@@ -497,6 +620,8 @@ CP1-Academia/
 │   └── Exceptions/          # DomainException, ResourceNotFoundException, ConflictException
 ├── CP1-Academia.Application/
 │   ├── DTOs/                # Request e Response por entidade
+│   │   ├── PageRequest.cs   # CP5 — valida page/pageSize
+│   │   └── PagedResult.cs   # CP5 — envelope paginado
 │   └── Services/            # Interfaces de repositório específicas + IRepository<T> genérica
 ├── CP1-Academia.Infrastructure/
 │   ├── Persistence/
@@ -504,17 +629,20 @@ CP1-Academia/
 │   │   └── Configurations/  # IEntityTypeConfiguration<T> por entidade
 │   ├── Migrations/          # 20260418164044_Initial
 │   ├── Repository.cs        # Implementação genérica IRepository<T>
-│   └── *Repository.cs       # Implementações específicas por entidade
+│   └── *Repository.cs       # Implementações específicas por entidade (AlunoRepository.GetPaged — CP5)
 ├── CP1-Academia.API/
 │   ├── Controllers/         # Um controller por entidade, com XML comments
 │   ├── Exceptions/          # GlobalExceptionHandler
 │   ├── HealthChecks/        # HealthCheckServiceExtensions, HealthCheckWriter
-│   ├── Program.cs           # DI, Swagger, health checks e exception handler
+│   ├── Swagger/              # CP5 — ConfigureSwaggerOptions (um doc por versão)
+│   ├── RateLimiting/          # CP5 — RateLimitingExtensions (fixed window)
+│   ├── Program.cs           # DI, versionamento, rate limit, Swagger, health checks e exception handler
 │   └── appsettings.json
 ├── CP1-Academia.Domain.Tests/       # Testes de regra de negócio (xUnit, sem mock)
-├── CP1-Academia.Application.Tests/  # Testes de repositório (xUnit + Moq)
+├── CP1-Academia.Application.Tests/  # Testes de repositório + paginação (xUnit + Moq) — PaginacaoTests.cs (CP5)
 └── docs/
     ├── health-checks/       # Evidências de /health (Healthy/Unhealthy)
     ├── logs/                # Evidências de logs estruturados
-    └── tests/                # Evidências de dotnet test
+    ├── tests/                # Evidências de dotnet test
+    └── (evidências CP5: versionamento, paginação e rate limit — ver seções acima)
 ```
